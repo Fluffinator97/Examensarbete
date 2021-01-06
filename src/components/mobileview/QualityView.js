@@ -1,128 +1,52 @@
-import React, { useState } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Switch, Route, useParams } from "react-router";
+import Accordion from "react-bootstrap/Accordion";
+import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import properMockData from "../../context/data/properMockData";
+import ListGroup from "react-bootstrap/ListGroup";
+import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { useParams, useHistory } from "react-router";
 
-import ThreeDGraph from "./3DGraph";
-import OverallViewList from "./OverallViewList";
-import OverallViewMetrics from "./OverallViewMetrics";
-import BackgroundNBE from "../../assets/images/BackgroundNBE.jpg";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function OverallView() {
-  const borderHeight = window.innerHeight - 200;
-  const windowHeight = window.innerHeight;
-  const windowWidth = window.innerWidth;
+export default function QualityView() {
+  let history = useHistory();
+  console.log(history);
 
-  const path = window.location.pathname;
   const { name } = useParams();
-  const [metricState, setMetricState] = useState(false);
-  const [spaceState, setSpaceState] = useState(false);
-  const [listState, setListState] = useState(false);
-  const [padder, setPadder] = useState(0);
-
-
-  const goodNodes = properMockData.nodes.filter((node) => {
-    return node.group > 50;
-  });
-  const badNodes = properMockData.nodes.filter((node) => {
-    return node.group > 40 && node.group <= 50;
-  });
-  const reallyBadNodes = properMockData.nodes.filter((node) => {
-    return node.group <= 40;
-  });
-
-  const allNodes = properMockData.nodes.length;
-  const numberOfGoodNodes = (goodNodes.length / allNodes) * 100;
-  const numberOfBadNodes = (badNodes.length / allNodes) * 100;
-  const numberOfReallyBadNodes = (reallyBadNodes.length / allNodes) * 100;
-  const percentOfGoodNodes = numberOfGoodNodes.toFixed(2);
-  const percentOfBadNodes = numberOfBadNodes.toFixed(2);
-  const percentOfReallyBadNodes = numberOfReallyBadNodes.toFixed(2);
-
-  if (path === "/overall/Metrics" && metricState === false) {
-    setMetricState(true);
-    setSpaceState(false);
-    setListState(false);
-    setPadder(200);
-  } else if (path === "/overall/Space" && spaceState === false) {
-    setMetricState(false);
-    setSpaceState(true);
-    setListState(false);
-    setPadder(0);
-  } else if (path === "/overall/List" && listState === false) {
-    setMetricState(false);
-    setSpaceState(false);
-    setListState(true);
-    setPadder(0);
-  }
+  console.log(name);
 
   return (
-    <div>
-      <img
-        src={BackgroundNBE}
-        width={windowWidth}
-        height={windowHeight}
-        style={{objectFit: "cover"}}
-        className="backgroundImageFixer"
-        alt="hello"
-      ></img>
+    <div className="backgroundImage">
       <iframe
         id="overall"
         title="overall"
         style={{ width: "100%", height: "100%" }}
       ></iframe>
-      <Container fluid>
-        <Row style={{ height: 30 }}></Row>
+      <Container fluid className="">
         <Row
           xl={{ cols: 12 }}
           lg={{ cols: 12 }}
           md={{ cols: 12 }}
           sm={{ cols: 12 }}
           xs={{ cols: 12 }}
+          style={{ paddingTop: 16 }}
         >
           <Col
-            lg={{ span: 1, offset: 1 }}
-            md={{ span: 1, offset: 1 }}
+            lg={{ span: 2 }}
+            md={{ span: 2 }}
             sm={{ span: 2 }}
             xs={{ span: 2 }}
           >
-            <a href={"/EnterpriseDataModel"}  style={{paddingLeft: "60%"}}>
-              <FontAwesomeIcon icon={faAngleLeft} size="3x" />
-            </a>
+            <FontAwesomeIcon
+              icon={faTimesCircle}
+              size="3x"
+              onClick={history.goBack}
+              style={{ cursor: "pointer" }}
+            />
           </Col>
-          <Col
-            lg={{ span: 8 }}
-            md={{ span: 6 }}
-            sm={{ span: 8 }}
-            xs={{ span: 8 }}
-            style={{ textAlign: "center" }}
-          >
-            <p className="overallViewTitle">Overall {name}</p>
-          </Col>
-          <Col
-            lg={{ span: 1 }}
-            md={{ span: 1 }}
-            sm={{ span: 2 }}
-            xs={{ span: 2 }}
-            style={{padding: 0}}
-          >
-            <a href={"/profile"} >
-              <FontAwesomeIcon icon={faAngleRight} size="3x"/>
-            </a>
-          </Col>
-        </Row>
-        <Row
-          xl={{ cols: 12 }}
-          lg={{ cols: 12 }}
-          md={{ cols: 12 }}
-          sm={{ cols: 12 }}
-          xs={{ cols: 12 }}
-        >
-          <Col></Col>
           <Col
             lg={{ span: 8 }}
             md={{ span: 8 }}
@@ -130,18 +54,14 @@ export default function OverallView() {
             xs={{ span: 8 }}
             style={{ textAlign: "center" }}
           >
-            <div className="">
-              {/* <p className=" overallViewStats ">Measurable Progress</p> */}
-              <p className=" overallViewStats ">Good {percentOfGoodNodes}%</p>
-              <p className=" overallViewStats yellowText ">
-                Risk {percentOfBadNodes}%
-              </p>
-              <p className=" overallViewStats redText ">
-                Alert {percentOfReallyBadNodes}%
-              </p>
-            </div>
+            <h1 className="entityTitle">Quality View</h1>
           </Col>
-          <Col></Col>
+          <Col
+            lg={{ span: 2 }}
+            md={{ span: 2 }}
+            sm={{ span: 2 }}
+            xs={{ span: 2 }}
+          ></Col>
         </Row>
         <Row
           xl={{ cols: 12 }}
@@ -149,81 +69,268 @@ export default function OverallView() {
           md={{ cols: 12 }}
           sm={{ cols: 12 }}
           xs={{ cols: 12 }}
-          style={{marginTop: 16 }}
         >
-          <Col></Col>
+          <Col
+            lg={{ span: 1 }}
+            md={{ span: 1 }}
+            sm={{ span: 1 }}
+            xs={{ span: 1 }}
+          ></Col>
+          <Col
+            lg={{ span: 10 }}
+            md={{ span: 10 }}
+            sm={{ span: 10 }}
+            xs={{ span: 10 }}
+          >
+            <h1 style={{ textAlign: "center" }}>{name}</h1>
+            <p className="qualityPStyle" style={{ textAlign: "center" }}>
+              Overall Performance 89%
+            </p>
+          </Col>
+          <Col
+            lg={{ span: 1 }}
+            md={{ span: 1 }}
+            sm={{ span: 1 }}
+            xs={{ span: 1 }}
+          ></Col>
+        </Row>
+        <Row
+          xl={{ cols: 12 }}
+          lg={{ cols: 12 }}
+          md={{ cols: 12 }}
+          sm={{ cols: 12 }}
+          xs={{ cols: 12 }}
+        >
           <Col
             lg={{ span: 12 }}
             md={{ span: 12 }}
             sm={{ span: 12 }}
             xs={{ span: 12 }}
-            style={{
-              textAlign: "center",
-              height: borderHeight,
-              marginBottom: padder,
-            }}
           >
-            <Switch>
-              <Route path="/overall/metrics" component={OverallViewMetrics} />
-              <Route path="/overall/space" component={ThreeDGraph} />
-              <Route path="/overall/list" component={OverallViewList} />
-            </Switch>
+            <Accordion style={{ marginBottom: 100 }}>
+              <Card>
+                <Accordion.Toggle as={Card.Header} eventKey="0">
+                  Portfolios
+                </Accordion.Toggle>
+                <Accordion.Collapse eventKey="0">
+                  <Card.Body style={{ display: "inline-flex" }}>
+                    <ListGroup className="list-group-flush">
+                      <ListGroup.Item
+                        style={{ width: window.innerWidth / 2.5 }}
+                      >
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Portfolio 1</p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Portfolio 2</p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Portfolio 3</p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Portfolio 4</p>
+                        </a>
+                      </ListGroup.Item>
+                    </ListGroup>
+                    <ListGroup className="list-group-flush">
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Epics Delivered 5</p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Epics Delivered 2</p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Epics Delivered 8</p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Epics Delivered 4</p>
+                        </a>
+                      </ListGroup.Item>
+                    </ListGroup>
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+              <Card>
+                <Accordion.Toggle as={Card.Header} eventKey="1">
+                  Programs
+                </Accordion.Toggle>
+                <Accordion.Collapse eventKey="1">
+                  <Card.Body style={{ display: "inline-flex" }}>
+                    <ListGroup className="list-group-flush">
+                      <ListGroup.Item style={{ width: window.innerWidth / 3 }}>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Program 1</p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Program 2</p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Program 3</p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Program 4</p>
+                        </a>
+                      </ListGroup.Item>
+                    </ListGroup>
+                    <ListGroup className="list-group-flush">
+                      <ListGroup.Item style={{ width: window.innerWidth / 2 }}>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Feature enablement 50</p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Feature enablement 20</p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Feature enablement 80</p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Feature enablement 40</p>
+                        </a>
+                      </ListGroup.Item>
+                    </ListGroup>
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+              <Card>
+                <Accordion.Toggle as={Card.Header} eventKey="2">
+                  Teams
+                </Accordion.Toggle>
+                <Accordion.Collapse eventKey="2">
+                  <Card.Body style={{ display: "inline-flex" }}>
+                    <ListGroup className="list-group-flush">
+                      <ListGroup.Item style={{ width: window.innerWidth / 3 }}>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Team 1</p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Team 2</p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Team 3</p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Team 4</p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Team 5</p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Team 6</p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Team 7</p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">Team 8</p>
+                        </a>
+                      </ListGroup.Item>
+                    </ListGroup>
+                    <ListGroup className="list-group-flush">
+                      <ListGroup.Item style={{ width: window.innerWidth / 2 }}>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">
+                            Delivered Stories {Math.floor(Math.random() * 300)}
+                          </p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">
+                            Delivered Stories {Math.floor(Math.random() * 300)}
+                          </p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">
+                            Delivered Stories {Math.floor(Math.random() * 300)}
+                          </p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">
+                            Delivered Stories {Math.floor(Math.random() * 300)}
+                          </p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">
+                            Delivered Stories {Math.floor(Math.random() * 300)}
+                          </p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">
+                            Delivered Stories {Math.floor(Math.random() * 300)}
+                          </p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">
+                            Delivered Stories {Math.floor(Math.random() * 300)}
+                          </p>
+                        </a>
+                      </ListGroup.Item>
+                      <ListGroup.Item>
+                        <a href="qualityview/defect">
+                          <p className="qualityPStyle">
+                            Delivered Stories {Math.floor(Math.random() * 300)}
+                          </p>
+                        </a>
+                      </ListGroup.Item>
+                    </ListGroup>
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
+            </Accordion>
           </Col>
-          <Col></Col>
         </Row>
       </Container>
-      <div className="overallViewSelectionButtonFlex">
-        <div>
-          {metricState ? (
-            <a href={"/overall/Metrics"}>
-              <button className="overallViewSelectionButtons metrics btn btn-light">
-                Metric
-              </button>
-            </a>
-          ) : (
-            <a href={"/overall/Metrics"}>
-              <button className="overallViewSelectionButtons metrics btn btn-outline-light">
-                Metrics
-              </button>
-            </a>
-          )}
-        </div>
-        <div>
-          {spaceState ? (
-            <a href={"/overall/Space"}>
-              <button className="overallViewSelectionButtons space btn btn-light">
-                Space
-              </button>
-            </a>
-          ) : (
-            <a href={"/overall/Space"}>
-              <button className="overallViewSelectionButtons space btn btn-outline-light">
-                Space
-              </button>
-            </a>
-          )}
-        </div>
-        <div>
-          {listState ? (
-            <a href={"/overall/List"}>
-              <button className="overallViewSelectionButtons list btn btn-light">
-                List
-              </button>
-            </a>
-          ) : (
-            <a href={"/overall/List"}>
-              <button className="overallViewSelectionButtons list btn btn-outline-light">
-                List
-              </button>
-            </a>
-          )}
-        </div>
-      </div>
-      <div
-        style={{ justifyContent: "center", backgroundColor: "black" }}
-        className="footerLogoBox"
-      >
-        <svg width="50" height="50" className="logoSVG">
+      <div style={{ justifyContent: "center", backgroundColor: "black" }} className="footerLogoBox">
+      <svg width="50" height="50" className="logoSVG">
           <g>
             <title>background</title>
             <rect fill="#000" height="50" width="50" y="-1" x="-1" />
