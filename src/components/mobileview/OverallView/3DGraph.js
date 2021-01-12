@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { ForceGraph3D } from "react-force-graph";
 
-import properMockData from "../../context/data/properMockData";
+import properMockData from "../../../context/data/properMockData";
 
 var NodeClickedID = 0;
 

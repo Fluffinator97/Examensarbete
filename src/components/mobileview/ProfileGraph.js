@@ -9,14 +9,14 @@ import { ForceGraph2D } from "react-force-graph";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
-import GraphData from "../context/data/MockDataFilter";
+import GraphData from "../../context/data/MockDataFilter";
 import DoubleCircleDiagram from "./Diagrams/DoubleCircleDiagram";
 import BurnDownChart from "./Diagrams/BurnDownDiagram";
 import VelocityChart from "./Diagrams/VelocityChart";
 import Barchart from "./Diagrams/Barchart";
 import LeadTimeChart from "./Diagrams/LeadTimeChart";
 import "bootstrap/dist/css/bootstrap.min.css";
-import BackgroundNBE from "../assets/images/BackgroundNBE.jpg";
+import BackgroundNBE from "../../assets/images/BackgroundNBE.jpg";
 
 export default function TwoDGraph() {
 

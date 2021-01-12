@@ -1,38 +1,235 @@
+/* General Styling */
 .App {
+  text-align: center;
+  margin: 0;
+  overflow-y: hidden;
+}
+
+#root {
+  margin: 0;
+  height: 100%;
+
+  
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: wheat;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+.first {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+
+.splashScreenHeader {
+  font-family: "Times New Roman", Times, serif;
+  position: absolute;
+  z-index: 10;
+  text-align: center;
+  width: 100%;
+  color: rgb(127, 127, 127);
+  margin-top: 50px;
+}
+
+.splashScreenSize {
+  width: 100%;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+.splashScreenTitleBox {
+  font-family: "Times New Roman", Times, serif;
+  position: absolute;
+  z-index: 10;
+  text-align: center;
+  width: 100%;
+  color: rgb(127, 127, 127);
+  bottom: 40%;
+}
+
+.splashScreenFooter {
+  font-family: "Times New Roman", Times, serif;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.splashScreenTitle {
+  font-family: "Times New Roman", Times, serif;
+  position: absolute;
+  z-index: 10;
+  text-align: center;
+  width: 100%;
+}
+
+
+.overallViewTitle {
+  margin: 0 5% 0 5%;
+  font-family: "Times New Roman", Times, serif;
+  text-align: center;
+  font-size: 25px;
+}
+
+.entityTitle {
+  margin: 5% 0 5%;
+  font-family: "Times New Roman", Times, serif;
+  text-align: center;
+  font-size: 25px;
+}
+
+.overallViewSelectionButtons {
+  width: 75px;
+  height: 60px;
+}
+
+#overall {
+  position: fixed;
+  border-width: 5px 5px 0px 5px;
+  border-style: solid;
+  border-color: black;
+  z-index: 100;
   pointer-events: none;
+  border-radius: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+
+.entityTypeTitle {
+  margin: 5% 0 5%;
+  font-family: "Times New Roman", Times, serif;
+  text-align: center;
+  font-size: 25px;
+  color: rgb(86, 80, 60);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.profileTitle {
+  margin: 5% 0 5%;
+  font-family: "Times New Roman", Times, serif;
+  text-align: center;
+  font-size: 25px;
+}
+
+.entityExplanation {
+  font-family: "Times New Roman", Times, serif;
+  text-align: center;
+  color: rgb(86, 80, 60);
+}
+
+.qualityPStyle {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 17px;
+}
+.overallViewSelectionButtonFlex {
+  background-color: black;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-evenly;
+  position: fixed;
+  bottom: 3rem;
+  padding: 5px;
+}
+
+.overallViewProductName {
+  font-family: "Times New Roman", Times, serif;
+  width: 100%;
+  bottom: 0;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  position: fixed;
+  z-index: 1000000000;
+  margin: 0 0 20px 0;
   color: white;
+  text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+.overallViewProductNameMP {
+  font-family: "Times New Roman", Times, serif;
+  width: 100%;
+  bottom: 0;
+  justify-content: center;
+  position: fixed;
+  z-index: 1000000000;
+  margin: 0 0 3px 0;
+  color: white;
+  text-align: center; 
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.logoSVG {
+  margin: 0 0 0 5px;
+  z-index: 1000000000;
+}
+
+.footerLogoBox {
+  bottom: 0;
+  position: fixed;
+  z-index: 1000000000;
+  width: 100%;
+}
+
+.backgroundImageFixer{
+  z-index: -1;
+  position: fixed;
+}
+
+.overallViewProductNameBlack {
+  font-family: "Times New Roman", Times, serif;
+  width: 100%;
+  bottom: 0;
+  justify-content: center;
+  position: fixed;
+  z-index: 1000000000;
+  margin: 0 0 20px 0;
+  color: black;
+  text-align: center;
+}
+
+.overallViewProductNameMPBlack {
+  font-family: "Times New Roman", Times, serif;
+  width: 100%;
+  bottom: 0;
+  justify-content: center;
+  position: fixed;
+  z-index: 1000000000;
+  margin: 0 0 3px 0;
+  color: black;
+  text-align: center; 
+}
+
+.overallViewStats {
+  font-family: "Times New Roman", Times, serif;
+  width: 100%;
+  text-align: center;
+  margin: 1px;
+}
+
+.yellowText {
+  color: #9e9408;
+}
+.redText {
+  color: red;
+}
+
+.textAndGraphBindingBox {
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.overallListObjects {
+  font-family: "Times New Roman", Times, serif;
+  background-color: rgb(127, 127, 127, 0.5);
+  margin-bottom: 1px;
+  padding: 5px 0px 5px 0px;
 }

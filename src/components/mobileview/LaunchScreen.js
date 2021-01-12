@@ -1,7 +1,7 @@
 import React from "react";
 import { ForceGraph2D } from "react-force-graph";
 
-import GraphData from "../context/data/LogoData";
+import GraphData from "../../context/data/LogoData";
 
 export default function TwoDGraph() {
   // Setting Sizes from the Graph

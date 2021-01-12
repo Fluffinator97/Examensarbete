@@ -11,7 +11,7 @@ import { useParams, useHistory } from "react-router";
 import DoubleCircleDiagram from "./Diagrams/DoubleCircleDiagram";
 import BurnDownChart from "./Diagrams/BurnDownDiagram";
 import "bootstrap/dist/css/bootstrap.min.css";
-import BackgroundNBE from "../assets/images/BackgroundNBE.jpg";
+import BackgroundNBE from "../../assets/images/BackgroundNBE.jpg";
 
 export default function EntityReport() {
   const { name } = useParams();
