@@ -9,7 +9,7 @@ import properMockData from "../../../context/data/properMockData";
 
 import ThreeDGraph from "./3DGraph";
 import OverallViewList from "./OverallViewList";
-import OverallViewMetrics from "./OverallViewMetrics";
+import OverViewMetrics from "./OverViewMetrics";
 import BackgroundNBE from "../../../assets/images/BackgroundNBE.jpg";
 
 export default function OverallView() {
@@ -164,7 +164,7 @@ export default function OverallView() {
             }}
           >
             <Switch>
-              <Route path="/overall/metrics" component={OverallViewMetrics} />
+              <Route path="/overall/metrics" component={OverViewMetrics} />
               <Route path="/overall/space" component={ThreeDGraph} />
               <Route path="/overall/list" component={OverallViewList} />
             </Switch>
