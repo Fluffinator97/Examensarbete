@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -9,7 +9,6 @@ import properMockData from "../context/data/properMockData";
 import ThreeDGraph from "./OverallView/3DGraph";
 import OverallViewList from "./OverallView/OverallViewList";
 import OverallViewMetrics from "./OverallView/OverallViewMetrics";
-import BackgroundNBE from "../assets/images/BackgroundNBE.jpg";
 
 export default function DesktopView() {
   const goodNodes = properMockData.nodes.filter((node) => {
