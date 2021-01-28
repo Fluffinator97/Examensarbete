@@ -9,8 +9,9 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Table from "react-bootstrap/Table";
 import TreeView from "@material-ui/lab/TreeView";
 import { TreeItem } from "@material-ui/lab";
-
 import "bootstrap/dist/css/bootstrap.min.css";
+
+import TableData from "../../context/data/TableData"
 
 export default function OverallViewMetrics() {
 
@@ -41,24 +42,18 @@ export default function OverallViewMetrics() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Customer</td>
-                      <td>1</td>
-                      <td>5</td>
-                      <td>15</td>
-                    </tr>
-                    <tr>
-                      <td>Late</td>
-                      <td>5</td>
-                      <td>15</td>
-                      <td>25</td>
-                    </tr>
-                    <tr>
-                      <td>Early</td>
-                      <td>25</td>
-                      <td>50</td>
-                      <td>100</td>
-                    </tr>
+                  {
+                    TableData.NumberofDefects
+                    .map((metric) => (
+                      <tr
+                        // key={metric.Location}
+                      >
+                        <td>{metric.Location}</td>
+                        <td>{metric.High}</td>
+                        <td>{metric.Medium}</td>
+                        <td>{metric.Low}</td>
+                      </tr>))
+                  }
                   </tbody>
                 </Table>
               </TreeItem>
@@ -73,33 +68,27 @@ export default function OverallViewMetrics() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Customer</td>
-                      <td>5</td>
-                      <td>3</td>
-                      <td>1</td>
-                    </tr>
-                    <tr>
-                      <td>Late</td>
-                      <td>3</td>
-                      <td>2</td>
-                      <td>1</td>
-                    </tr>
-                    <tr>
-                      <td>Early</td>
-                      <td>10</td>
-                      <td>8</td>
-                      <td>7</td>
-                    </tr>
+                  {
+                    TableData.AverageLeadTime
+                    .map((metric) => (
+                      <tr
+                        // key={metric.Location}
+                      >
+                        <td>{metric.Location}</td>
+                        <td>{metric.High}</td>
+                        <td>{metric.Medium}</td>
+                        <td>{metric.Low}</td>
+                      </tr>))
+                  }
                   </tbody>
                 </Table>
               </TreeItem>
             </TreeView>
             <ListItem>
-              <ListItemText primary="Total Performed Tests/Defects 10%" />
+              <ListItemText primary="Total Performed Tests/Defects: 10%" />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Automated Tests 50%" />
+              <ListItemText primary="Automated Tests: 50%" />
             </ListItem>
           </List>
         </Accordion.Collapse>
@@ -127,18 +116,18 @@ export default function OverallViewMetrics() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>PI</td>
-                      <td>2</td>
-                      <td>20</td>
-                      <td>200</td>
-                    </tr>
-                    <tr>
-                      <td>Sprint</td>
-                      <td>1</td>
-                      <td>13</td>
-                      <td>50</td>
-                    </tr>
+                  {
+                    TableData.NumberofDeliveries
+                    .map((metric) => (
+                      <tr
+                        // key={metric.Phase}
+                      >
+                        <td>{metric.Phase}</td>
+                        <td>{metric.Epic}</td>
+                        <td>{metric.Feature}</td>
+                        <td>{metric.Story}</td>
+                      </tr>))
+                  }
                   </tbody>
                 </Table>
               </TreeItem>
@@ -153,18 +142,18 @@ export default function OverallViewMetrics() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>PI</td>
-                      <td>50</td>
-                      <td>50</td>
-                      <td>50</td>
-                    </tr>
-                    <tr>
-                      <td>Sprint</td>
-                      <td>10</td>
-                      <td>10</td>
-                      <td>10</td>
-                    </tr>
+                  {
+                    TableData.DeliveredStoryPoints
+                    .map((metric) => (
+                      <tr
+                        // key={metric.Phase}
+                      >
+                        <td>{metric.Phase}</td>
+                        <td>{metric.Epic}</td>
+                        <td>{metric.Feature}</td>
+                        <td>{metric.Story}</td>
+                      </tr>))
+                  }
                   </tbody>
                 </Table>
               </TreeItem>
@@ -181,7 +170,7 @@ export default function OverallViewMetrics() {
         <Accordion.Collapse eventKey="2" style={{ backgroundColor: "white" }}>
           <List>
             <ListItem>
-              <ListItemText primary="Planned/Actual 80%" />
+              <ListItemText primary="Planned/Actual: 80%" />
             </ListItem>
           </List>
         </Accordion.Collapse>
@@ -207,18 +196,16 @@ export default function OverallViewMetrics() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Epic</td>
-                      <td>30</td>
-                    </tr>
-                    <tr>
-                      <td>Feature</td>
-                      <td>14</td>
-                    </tr>
-                    <tr>
-                      <td>Story</td>
-                      <td>7</td>
-                    </tr>
+                  {
+                    TableData.CycleTime
+                    .map((metric) => (
+                      <tr
+                        // key={metric.Phase}
+                      >
+                        <td>{metric.CycleTime}</td>
+                        <td>{metric.NrDays}</td>
+                      </tr>))
+                  }
                   </tbody>
                 </Table>
               </TreeItem>
@@ -231,18 +218,16 @@ export default function OverallViewMetrics() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Epic</td>
-                      <td>30</td>
-                    </tr>
-                    <tr>
-                      <td>Feature</td>
-                      <td>14</td>
-                    </tr>
-                    <tr>
-                      <td>Story</td>
-                      <td>7</td>
-                    </tr>
+                  {
+                    TableData.LeadTime
+                    .map((metric) => (
+                      <tr
+                        // key={metric.Phase}
+                      >
+                        <td>{metric.CycleTime}</td>
+                        <td>{metric.NrDays}</td>
+                      </tr>))
+                  }
                   </tbody>
                 </Table>
               </TreeItem>
@@ -259,10 +244,10 @@ export default function OverallViewMetrics() {
         <Accordion.Collapse eventKey="4" style={{ backgroundColor: "white" }}>
           <List>
             <ListItem>
-              <ListItemText primary="Employee Satisfaction 60%" />
+              <ListItemText primary="Employee Satisfaction: 60%" />
             </ListItem>
             <ListItem>
-              <ListItemText primary="Employee Engagement 70%" />
+              <ListItemText primary="Employee Engagement: 70%" />
             </ListItem>
           </List>
         </Accordion.Collapse>
@@ -276,7 +261,7 @@ export default function OverallViewMetrics() {
         <Accordion.Collapse eventKey="5">
           <List>
             <ListItem>
-              <ListItemText primary="Net Promoter Score 112" />
+              <ListItemText primary="Net Promoter Score: 112" />
             </ListItem>
           </List>
         </Accordion.Collapse>
