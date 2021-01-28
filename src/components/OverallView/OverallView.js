@@ -86,7 +86,7 @@ export default function OverallView() {
         >
           <Col
             lg={{ span: 1, offset: 1 }}
-            md={{ span: 1, offset: 1 }}
+            md={{ span: 2 }}
             sm={{ span: 2 }}
             xs={{ span: 2 }}
           >
@@ -96,7 +96,7 @@ export default function OverallView() {
           </Col>
           <Col
             lg={{ span: 8 }}
-            md={{ span: 6 }}
+            md={{ span: 8 }}
             sm={{ span: 8 }}
             xs={{ span: 8 }}
             style={{ textAlign: "center" }}
@@ -105,7 +105,7 @@ export default function OverallView() {
           </Col>
           <Col
             lg={{ span: 1 }}
-            md={{ span: 1 }}
+            md={{ span: 2 }}
             sm={{ span: 2 }}
             xs={{ span: 2 }}
             style={{padding: 0}}

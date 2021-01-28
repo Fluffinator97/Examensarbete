@@ -1,16 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Modal from "react-bootstrap/Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import properMockData from "../context/data/properMockData";
 
+import properMockData from "../context/data/properMockData";
 import ThreeDGraph from "./OverallView/3DGraph";
 import OverallViewList from "./OverallView/OverallViewList";
 import OverallViewMetrics from "./OverallView/OverallViewMetrics";
 
-export default function DesktopView() {
+export default function DesktopView(nodetarget) {
+  const [ nodeId, setNodeId ] = useState(0);
+  const [ show, setShow ] = useState(false);
+  
+  const handleClose = () => setShow(false);
+
+  const nodeClickHandler = (event) => {
+    setNodeId(event.currentTarget.getAttribute("id"));
+
+    setShow(true);
+  };
+  console.log(nodeId);
+
   const goodNodes = properMockData.nodes.filter((node) => {
     return node.group > 50;
   });
@@ -28,7 +41,7 @@ export default function DesktopView() {
   const percentOfGoodNodes = numberOfGoodNodes.toFixed(2);
   const percentOfBadNodes = numberOfBadNodes.toFixed(2);
   const percentOfReallyBadNodes = numberOfReallyBadNodes.toFixed(2);
-  
+
   return (
     <div>
       <Container fluid>
@@ -105,9 +118,52 @@ export default function DesktopView() {
           md={{ cols: 12 }}
           sm={{ cols: 12 }}
           xs={{ cols: 12 }}
-          style={{ marginTop: 16 }}
         >
           <Col
+            lg={{ span: 3 }}
+            md={{ span: 3 }}
+            sm={{ span: 3 }}
+            xs={{ span: 3 }}
+            style={{
+              textAlign: "center",
+            }}
+          >
+            <div style={{ height: 100 }}>
+              <OverallViewMetrics />
+            </div>
+          </Col>
+          <Col
+            lg={{ span: 7 }}
+            md={{ span: 7 }}
+            sm={{ span: 7 }}
+            xs={{ span: 7 }}
+            style={{
+              textAlign: "center",
+            }}
+          >
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>{properMockData.nodes[nodeId].name}</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <p className={"modalPTags"}>Node ID: {nodeId}</p>
+                <p className={"modalPTags"}>
+                  Progress of Delivery: {properMockData.nodes[nodeId].pOD}
+                </p>
+                <p className={"modalPTags"}>
+                  Planned Delivery Date: {properMockData.nodes[nodeId].pDD}
+                </p>
+                <p className={"modalPTags"}>
+                  Forecast Estimated Time of completion:{" "}
+                  {properMockData.nodes[nodeId].eTOC}
+                </p>
+              </Modal.Body>
+            </Modal>
+            <div style={{ height: window.innerHeight }}>
+              <ThreeDGraph />
+            </div>
+          </Col>
+          <Col
             lg={{ span: 2 }}
             md={{ span: 2 }}
             sm={{ span: 2 }}
@@ -116,29 +172,12 @@ export default function DesktopView() {
               textAlign: "center",
             }}
           >
-            <div style={{ height: window.innerHeight}}><OverallViewMetrics /></div>
-          </Col>
-          <Col
-            lg={{ span: 8 }}
-            md={{ span: 8 }}
-            sm={{ span: 8 }}
-            xs={{ span: 8 }}
-            style={{
-              textAlign: "center",
-            }}
-          >
-            <div style={{ height: window.innerHeight}}><ThreeDGraph /></div>
-          </Col>
-          <Col
-            lg={{ span: 2 }}
-            md={{ span: 2 }}
-            sm={{ span: 2 }}
-            xs={{ span: 2 }}
-            style={{
-              textAlign: "center",
-            }}
-          >
-            <div style={{ height: window.innerHeight}}><OverallViewList /></div>
+            <div style={{ height: window.innerHeight }}>
+              <OverallViewList
+                nodetarget={nodetarget}
+                nodeClickHandler={nodeClickHandler}
+              />
+            </div>
           </Col>
         </Row>
       </Container>
