@@ -219,6 +219,7 @@
 .textAndGraphBindingBox {
   width: 100%;
   text-align: center;
+  height: auto;
   /* margin-top: 1rem; */
 }
 
@@ -226,4 +227,8 @@
   font-family: "Times New Roman", Times, serif;
   margin: 0;
   cursor: pointer;
+}
+
+.desktopViewBox {
+  overflow: hidden;
 }

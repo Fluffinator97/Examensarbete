@@ -43,7 +43,7 @@ export default function DesktopView(nodetarget) {
   const percentOfReallyBadNodes = numberOfReallyBadNodes.toFixed(2);
 
   return (
-    <div>
+    <div className="desktopViewBox">
       <Container fluid>
         <Row style={{ height: 30 }}></Row>
         <Row
@@ -118,6 +118,7 @@ export default function DesktopView(nodetarget) {
           md={{ cols: 12 }}
           sm={{ cols: 12 }}
           xs={{ cols: 12 }}
+          style={{height: window.innerHeight * 0.8}}
         >
           <Col
             lg={{ span: 3 }}
@@ -128,7 +129,7 @@ export default function DesktopView(nodetarget) {
               textAlign: "center",
             }}
           >
-            <div style={{ height: 100 }}>
+            <div>
               <OverallViewMetrics />
             </div>
           </Col>
