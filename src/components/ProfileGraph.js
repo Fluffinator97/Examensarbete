@@ -309,7 +309,6 @@ export default function TwoDGraph() {
         style={{ justifyContent: "center", backgroundColor: "black" }}
         className="footerLogoBox"
       >
-          {/* logo for the fotter that spins */}
         <svg width="50" height="50" className="logoSVG">
           <g>
             <title>background</title>
