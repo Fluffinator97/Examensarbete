@@ -5,11 +5,15 @@ import nodeData from '../../context/data/nodeData'
 
 export default function ThreeDGraph() {
   const mql = window.matchMedia("(max-width: 1000px)");
+  let mobileView = mql.matches;
+  
+  
   let windowWidth = window.innerWidth;
-  if (mql > "1000") {
-    windowWidth = window.innerWidth * 0.6;
-  } else {
-  }
+    if (mobileView === true) {
+      windowWidth = window.innerWidth ;
+    } else {
+      windowWidth = window.innerWidth * 0.6;
+    }
 
   // Setting Sizes from the Graph
   const windowHeight = window.innerHeight - 300;

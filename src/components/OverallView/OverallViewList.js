@@ -30,7 +30,8 @@ export default function OverallViewList({ nodetarget, nodeClickHandler }) {
         className="yellowText overallListObjects"
         key={node.id}
         id={node.id}
-        onClick={nodeClickHandler}
+        nodetarget={nodetarget}
+                onClick={nodeClickHandler}
       >
         <p>{node.name}</p>
       </li>
@@ -48,7 +49,8 @@ export default function OverallViewList({ nodetarget, nodeClickHandler }) {
         className="overallListObjects"
         key={node.id}
         id={node.id}
-        onClick={nodeClickHandler}
+        nodetarget={nodetarget}
+                onClick={nodeClickHandler}
       >
         <p>{node.name}</p>
       </li>

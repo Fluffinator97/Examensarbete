@@ -2,37 +2,48 @@ import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Modal from "react-bootstrap/Modal";
 import { Switch, Route, useParams } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import nodeData from '../../context/data/nodeData'
+import nodeData from "../../context/data/nodeData";
 
 import ThreeDGraph from "./3DGraph";
 import OverallViewList from "./OverallViewList";
 import OverallViewMetrics from "./OverallViewMetrics";
 import BackgroundNBE from "../../assets/images/BackgroundNBE.jpg";
 
-export default function OverallView() {
+export default function OverallView(nodetarget) {
   const borderHeight = window.innerHeight - 200;
   const windowHeight = window.innerHeight;
   const windowWidth = window.innerWidth;
 
   const path = window.location.pathname;
   const { name } = useParams();
-  const [metricState, setMetricState] = useState(false);
+  const [metricState, setMetricState] = useState(true);
   const [spaceState, setSpaceState] = useState(false);
   const [listState, setListState] = useState(false);
   const [padder, setPadder] = useState(0);
+  const [nodeId, setNodeId] = useState(0);
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+
+  const nodeClickHandler = (event) => {
+    setNodeId(event.currentTarget.getAttribute("id"));
+
+    setShow(true);
+  };
+  console.log(nodeId);
 
   const goodNodes = nodeData.nodes.filter((node) => {
-    return node.group > 50;
+    return node.Progress > 50;
   });
   const badNodes = nodeData.nodes.filter((node) => {
-    return node.group > 40 && node.group <= 50;
+    return node.Progress > 40 && node.Progress <= 50;
   });
   const reallyBadNodes = nodeData.nodes.filter((node) => {
-    return node.group <= 40;
+    return node.Progress <= 40;
   });
 
   const allNodes = nodeData.nodes.length;
@@ -66,7 +77,7 @@ export default function OverallView() {
         src={BackgroundNBE}
         width={windowWidth}
         height={windowHeight}
-        style={{objectFit: "cover"}}
+        style={{ objectFit: "cover" }}
         className="backgroundImageFixer"
         alt="hello"
       ></img>
@@ -90,7 +101,7 @@ export default function OverallView() {
             sm={{ span: 2 }}
             xs={{ span: 2 }}
           >
-            <a href={"/EnterpriseDataModel"}  style={{paddingLeft: "60%"}}>
+            <a href={"/profile"} style={{ paddingLeft: "60%" }}>
               <FontAwesomeIcon icon={faAngleLeft} size="3x" />
             </a>
           </Col>
@@ -108,10 +119,10 @@ export default function OverallView() {
             md={{ span: 2 }}
             sm={{ span: 2 }}
             xs={{ span: 2 }}
-            style={{padding: 0}}
+            style={{ padding: 0 }}
           >
-            <a href={"/profile"} >
-              <FontAwesomeIcon icon={faAngleRight} size="3x"/>
+            <a href={"/profile"}>
+              <FontAwesomeIcon icon={faAngleRight} size="3x" />
             </a>
           </Col>
         </Row>
@@ -132,7 +143,7 @@ export default function OverallView() {
           >
             <div className="">
               {/* <p className=" overallViewStats ">Measurable Progress</p> */}
-              <p className=" overallViewStats ">Good {percentOfGoodNodes}%</p>
+              <p className=" overallViewStats">Good {percentOfGoodNodes}%</p>
               <p className=" overallViewStats yellowText ">
                 Risk {percentOfBadNodes}%
               </p>
@@ -149,7 +160,7 @@ export default function OverallView() {
           md={{ cols: 12 }}
           sm={{ cols: 12 }}
           xs={{ cols: 12 }}
-          style={{marginTop: 16 }}
+          style={{ marginTop: 16 }}
         >
           <Col></Col>
           <Col
@@ -163,10 +174,33 @@ export default function OverallView() {
               marginBottom: padder,
             }}
           >
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>{nodeData.nodes[nodeId].name}</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <p className={"modalPTags"}>Node ID: {nodeId}</p>
+                <p className={"modalPTags"}>
+                  Progress of Delivery: {nodeData.nodes[nodeId].pOD}
+                </p>
+                <p className={"modalPTags"}>
+                  Planned Delivery Date: {nodeData.nodes[nodeId].pDD}
+                </p>
+                <p className={"modalPTags"}>
+                  Forecast Estimated Time of completion:{" "}
+                  {nodeData.nodes[nodeId].eTOC}
+                </p>
+              </Modal.Body>
+            </Modal>
             <Switch>
               <Route path="/overall/metrics" component={OverallViewMetrics} />
               <Route path="/overall/space" component={ThreeDGraph} />
-              <Route path="/overall/list" component={OverallViewList} />
+              <Route
+                path="/overall/list"
+                component={OverallViewList}
+                nodetarget={nodetarget}
+                nodeClickHandler={nodeClickHandler}
+              />
             </Switch>
           </Col>
           <Col></Col>

@@ -156,8 +156,7 @@ export default function DesktopView(nodetarget) {
                   Planned Delivery Date: {nodeData.nodes[nodeId].pDD}
                 </p>
                 <p className={"modalPTags"}>
-                  Forecast Estimated Time of completion:{" "}
-                  {nodeData.nodes[nodeId].eTOC}
+                  Forecast Estimated Time of completion: {nodeData.nodes[nodeId].eTOC}
                 </p>
               </Modal.Body>
             </Modal>
