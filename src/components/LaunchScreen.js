@@ -10,8 +10,15 @@ export default function TwoDGraph() {
   // Setting The dist for the links
   var delay = 2000;
 
+  let mql = window.matchMedia("(max-width: 1000px)");
+  let mobileView = mql.matches;
+
   setTimeout(function () {
+    if (mobileView === true) {
     window.location = "overall/Metrics";
+  } else {
+     window.location = "overall"; 
+  }
   }, delay);
 
   return (

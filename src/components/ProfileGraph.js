@@ -17,11 +17,11 @@ import Barchart from "./Diagrams/Barchart";
 import LeadTimeChart from "./Diagrams/LeadTimeChart";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BackgroundNBE from "../assets/images/BackgroundNBE.jpg";
+// import Navigation from "./Navigation"
 
 export default function TwoDGraph() {
 
   console.log(GraphData);
-
   const fgRef = useRef();
 
   const windowWidth = window.innerWidth;
@@ -44,7 +44,7 @@ export default function TwoDGraph() {
       ></iframe>
       <Container fluid>
       <Row style={{ height: 30 }}></Row>
-        <Row
+      <Row
           xl={{ cols: 12 }}
           lg={{ cols: 12 }}
           md={{ cols: 12 }}
@@ -58,7 +58,7 @@ export default function TwoDGraph() {
             xs={{ span: 2 }}
           >
             {" "}
-            <a href={"/overall/Metrics"}style={{paddingLeft: "60%"}}>
+            <a href={"/overall/metrics"}style={{paddingLeft: "60%"}}>
               <FontAwesomeIcon icon={faAngleLeft} size="3x" />
             </a>
           </Col>
@@ -77,7 +77,7 @@ export default function TwoDGraph() {
             sm={{ span: 2 }}
             xs={{ span: 2 }}
           >
-            <a href={"/EnterpriseDataModel"}>
+            <a href={"/overall/metrics"}>
             <FontAwesomeIcon icon={faAngleRight} size="3x"/>
             </a>
           </Col>
@@ -134,7 +134,7 @@ export default function TwoDGraph() {
               height={150}
               nodeLabel="name"
               nodeVal={2}
-              nodeColor={node => node.group <= 40 ? "red" : "white"}
+              nodeColor={node => node.Progress <= 40 ? "red" : "white"}
               nodeOpacity={10}
               linkColor={link => "white"}
               linkWidth={1}

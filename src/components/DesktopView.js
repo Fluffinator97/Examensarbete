@@ -1,112 +1,169 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Modal from "react-bootstrap/Modal";
+import nodeData from '../context/data/nodeData'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import properMockData from "../context/data/properMockData";
 
 import ThreeDGraph from "./OverallView/3DGraph";
 import OverallViewList from "./OverallView/OverallViewList";
 import OverallViewMetrics from "./OverallView/OverallViewMetrics";
+// import Navigation from "./Navigation"
 
-export default function DesktopView() {
-  const goodNodes = properMockData.nodes.filter((node) => {
-    return node.group > 50;
+export default function DesktopView(nodetarget) {
+  const [ nodeId, setNodeId ] = useState(0);
+  const [ show, setShow ] = useState(false);
+  
+  const handleClose = () => setShow(false);
+
+  const nodeClickHandler = (event) => {
+    setNodeId(event.currentTarget.getAttribute("id"));
+
+    setShow(true);
+  };
+  console.log(nodeId);
+
+  const goodNodes = nodeData.nodes.filter((node) => {
+    return node.Progress > 50;
   });
-  const badNodes = properMockData.nodes.filter((node) => {
-    return node.group > 40 && node.group <= 50;
+  const badNodes = nodeData.nodes.filter((node) => {
+    return node.Progress > 40 && node.Progress <= 50;
   });
-  const reallyBadNodes = properMockData.nodes.filter((node) => {
-    return node.group <= 40;
+  const reallyBadNodes = nodeData.nodes.filter((node) => {
+    return node.Progress <= 40;
   });
 
-  const allNodes = properMockData.nodes.length;
+  const allNodes = nodeData.nodes.length;
   const numberOfGoodNodes = (goodNodes.length / allNodes) * 100;
   const numberOfBadNodes = (badNodes.length / allNodes) * 100;
   const numberOfReallyBadNodes = (reallyBadNodes.length / allNodes) * 100;
   const percentOfGoodNodes = numberOfGoodNodes.toFixed(2);
   const percentOfBadNodes = numberOfBadNodes.toFixed(2);
   const percentOfReallyBadNodes = numberOfReallyBadNodes.toFixed(2);
-  
+
   return (
-    <div>
+    <div className="desktopViewBox">
       <Container fluid>
-        <Row style={{ height: 30 }}></Row>
+      <Row style={{ height: 30 }}></Row>
+      <Row
+        xl={{ cols: 12 }}
+        lg={{ cols: 12 }}
+        md={{ cols: 12 }}
+        sm={{ cols: 12 }}
+        xs={{ cols: 12 }}
+      >
+        <Col
+          lg={{ span: 1, offset: 1 }}
+          md={{ span: 1, offset: 1 }}
+          sm={{ span: 2 }}
+          xs={{ span: 2 }}
+        >
+          <a href={"/profile"} style={{ paddingLeft: "60%" }}>
+            <FontAwesomeIcon icon={faAngleLeft} size="3x" />
+          </a>
+        </Col>
+        <Col
+          lg={{ span: 8 }}
+          md={{ span: 6 }}
+          sm={{ span: 8 }}
+          xs={{ span: 8 }}
+          style={{ textAlign: "center" }}
+        >
+          <p className="overallViewTitle">Overall View</p>
+        </Col>
+        <Col
+          lg={{ span: 1 }}
+          md={{ span: 1 }}
+          sm={{ span: 2 }}
+          xs={{ span: 2 }}
+          style={{ padding: 0 }}
+        >
+          <a href={"/profile"}>
+            <FontAwesomeIcon icon={faAngleRight} size="3x" />
+          </a>
+        </Col>
+      </Row>
+      <Row
+        xl={{ cols: 12 }}
+        lg={{ cols: 12 }}
+        md={{ cols: 12 }}
+        sm={{ cols: 12 }}
+        xs={{ cols: 12 }}
+      >
+        <Col></Col>
+        <Col
+          lg={{ span: 8 }}
+          md={{ span: 8 }}
+          sm={{ span: 8 }}
+          xs={{ span: 8 }}
+          style={{ textAlign: "center" }}
+        >
+          <div className="">
+            {/* <p className=" overallViewStats ">Measurable Progress</p> */}
+            <p className=" overallViewStats ">Good {percentOfGoodNodes}%</p>
+            <p className=" overallViewStats yellowText ">
+              Risk {percentOfBadNodes}%
+            </p>
+            <p className=" overallViewStats redText ">
+              Alert {percentOfReallyBadNodes}%
+            </p>
+          </div>
+        </Col>
+        <Col></Col>
+      </Row>
         <Row
           xl={{ cols: 12 }}
           lg={{ cols: 12 }}
           md={{ cols: 12 }}
           sm={{ cols: 12 }}
           xs={{ cols: 12 }}
+          style={{height: window.innerHeight * 0.8}}
         >
           <Col
-            lg={{ span: 1, offset: 1 }}
-            md={{ span: 1, offset: 1 }}
-            sm={{ span: 2 }}
-            xs={{ span: 2 }}
+            lg={{ span: 3 }}
+            md={{ span: 3 }}
+            sm={{ span: 3 }}
+            xs={{ span: 3 }}
+            style={{
+              textAlign: "center",
+            }}
           >
-            <a href={"/EnterpriseDataModel"} style={{ paddingLeft: "60%" }}>
-              <FontAwesomeIcon icon={faAngleLeft} size="3x" />
-            </a>
-          </Col>
-          <Col
-            lg={{ span: 8 }}
-            md={{ span: 6 }}
-            sm={{ span: 8 }}
-            xs={{ span: 8 }}
-            style={{ textAlign: "center" }}
-          >
-            <p className="overallViewTitle">Overall View</p>
-          </Col>
-          <Col
-            lg={{ span: 1 }}
-            md={{ span: 1 }}
-            sm={{ span: 2 }}
-            xs={{ span: 2 }}
-            style={{ padding: 0 }}
-          >
-            <a href={"/profile"}>
-              <FontAwesomeIcon icon={faAngleRight} size="3x" />
-            </a>
-          </Col>
-        </Row>
-        <Row
-          xl={{ cols: 12 }}
-          lg={{ cols: 12 }}
-          md={{ cols: 12 }}
-          sm={{ cols: 12 }}
-          xs={{ cols: 12 }}
-        >
-          <Col></Col>
-          <Col
-            lg={{ span: 8 }}
-            md={{ span: 8 }}
-            sm={{ span: 8 }}
-            xs={{ span: 8 }}
-            style={{ textAlign: "center" }}
-          >
-            <div className="">
-              {/* <p className=" overallViewStats ">Measurable Progress</p> */}
-              <p className=" overallViewStats ">Good {percentOfGoodNodes}%</p>
-              <p className=" overallViewStats yellowText ">
-                Risk {percentOfBadNodes}%
-              </p>
-              <p className=" overallViewStats redText ">
-                Alert {percentOfReallyBadNodes}%
-              </p>
+            <div>
+              <OverallViewMetrics />
             </div>
           </Col>
-          <Col></Col>
-        </Row>
-        <Row
-          xl={{ cols: 12 }}
-          lg={{ cols: 12 }}
-          md={{ cols: 12 }}
-          sm={{ cols: 12 }}
-          xs={{ cols: 12 }}
-          style={{ marginTop: 16 }}
-        >
+          <Col
+            lg={{ span: 7 }}
+            md={{ span: 7 }}
+            sm={{ span: 7 }}
+            xs={{ span: 7 }}
+            style={{
+              textAlign: "center",
+            }}
+          >
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>{nodeData.nodes[nodeId].name}</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <p className={"modalPTags"}>Node ID: {nodeId}</p>
+                <p className={"modalPTags"}>
+                  Progress of Delivery: {nodeData.nodes[nodeId].pOD}
+                </p>
+                <p className={"modalPTags"}>
+                  Planned Delivery Date: {nodeData.nodes[nodeId].pDD}
+                </p>
+                <p className={"modalPTags"}>
+                  Forecast Estimated Time of completion: {nodeData.nodes[nodeId].eTOC}
+                </p>
+              </Modal.Body>
+            </Modal>
+            <div style={{ height: window.innerHeight }}>
+              <ThreeDGraph />
+            </div>
+          </Col>
           <Col
             lg={{ span: 2 }}
             md={{ span: 2 }}
@@ -116,29 +173,12 @@ export default function DesktopView() {
               textAlign: "center",
             }}
           >
-            <div style={{ height: window.innerHeight}}><OverallViewMetrics /></div>
-          </Col>
-          <Col
-            lg={{ span: 8 }}
-            md={{ span: 8 }}
-            sm={{ span: 8 }}
-            xs={{ span: 8 }}
-            style={{
-              textAlign: "center",
-            }}
-          >
-            <div style={{ height: window.innerHeight}}><ThreeDGraph /></div>
-          </Col>
-          <Col
-            lg={{ span: 2 }}
-            md={{ span: 2 }}
-            sm={{ span: 2 }}
-            xs={{ span: 2 }}
-            style={{
-              textAlign: "center",
-            }}
-          >
-            <div style={{ height: window.innerHeight}}><OverallViewList /></div>
+            <div style={{ height: window.innerHeight }}>
+              <OverallViewList
+                nodetarget={nodetarget}
+                nodeClickHandler={nodeClickHandler}
+              />
+            </div>
           </Col>
         </Row>
       </Container>
