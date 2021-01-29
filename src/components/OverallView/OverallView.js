@@ -195,12 +195,12 @@ export default function OverallView(nodetarget) {
             <Switch>
               <Route path="/overall/metrics" component={OverallViewMetrics} />
               <Route path="/overall/space" component={ThreeDGraph} />
-              <Route
-                path="/overall/list"
-                component={OverallViewList}
-                nodetarget={nodetarget}
-                nodeClickHandler={nodeClickHandler}
-              />
+              <Route path="/overall/list">
+                <OverallViewList
+                  nodetarget={nodetarget}
+                  nodeClickHandler={nodeClickHandler}
+                />
+              </Route>
             </Switch>
           </Col>
           <Col></Col>

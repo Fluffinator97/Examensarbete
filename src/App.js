@@ -4,7 +4,6 @@ import { Switch, Route } from "react-router";
 import LaunchScreen from "./components/LaunchScreen";
 import OverallView from "./components/OverallView/OverallView";
 import ProfileGraph from "./components/ProfileGraph";
-import EnterpriseDataModel from "./components/EnterpriseDataModel";
 import DesktopView from "./components/DesktopView";
 import PageNotFound from "./components/ErrorPage"
 import "./App.css";
@@ -20,7 +19,6 @@ export default function App() {
           <Route exact path="/" component={LaunchScreen} />
           <Route path="/overall/:name" component={OverallView} />
           <Route path="/profile" component={ProfileGraph} />
-          <Route path="/EnterpriseDataModel" component={EnterpriseDataModel} />
           <Route component={PageNotFound} />
         </Switch>
       ) : (
@@ -28,7 +26,6 @@ export default function App() {
           <Route exact path="/" component={LaunchScreen} />
           <Route path="/overall" component={DesktopView} />
           <Route path="/profile" component={ProfileGraph} />
-          <Route path="/EnterpriseDataModel" component={EnterpriseDataModel} />
           <Route component={PageNotFound} />
         </Switch>
       )}

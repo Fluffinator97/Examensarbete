@@ -3,6 +3,7 @@ import nodeData from '../../context/data/nodeData'
 
 
 export default function OverallViewList({ nodetarget, nodeClickHandler }) {
+
   const boxHeight = window.innerHeight - 315;
 
   const badNodes = nodeData.nodes
@@ -31,7 +32,7 @@ export default function OverallViewList({ nodetarget, nodeClickHandler }) {
         key={node.id}
         id={node.id}
         nodetarget={nodetarget}
-                onClick={nodeClickHandler}
+        onClick={nodeClickHandler}
       >
         <p>{node.name}</p>
       </li>
@@ -50,7 +51,7 @@ export default function OverallViewList({ nodetarget, nodeClickHandler }) {
         key={node.id}
         id={node.id}
         nodetarget={nodetarget}
-                onClick={nodeClickHandler}
+        onClick={nodeClickHandler}
       >
         <p>{node.name}</p>
       </li>

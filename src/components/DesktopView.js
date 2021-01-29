@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Modal from "react-bootstrap/Modal";
-import nodeData from '../context/data/nodeData'
+import nodeData from "../context/data/nodeData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,14 +13,13 @@ import OverallViewMetrics from "./OverallView/OverallViewMetrics";
 // import Navigation from "./Navigation"
 
 export default function DesktopView(nodetarget) {
-  const [ nodeId, setNodeId ] = useState(0);
-  const [ show, setShow ] = useState(false);
-  
+  const [nodeId, setNodeId] = useState(0);
+  const [show, setShow] = useState(false);
+
   const handleClose = () => setShow(false);
 
   const nodeClickHandler = (event) => {
     setNodeId(event.currentTarget.getAttribute("id"));
-
     setShow(true);
   };
   console.log(nodeId);
@@ -46,80 +45,80 @@ export default function DesktopView(nodetarget) {
   return (
     <div className="desktopViewBox">
       <Container fluid>
-      <Row style={{ height: 30 }}></Row>
-      <Row
-        xl={{ cols: 12 }}
-        lg={{ cols: 12 }}
-        md={{ cols: 12 }}
-        sm={{ cols: 12 }}
-        xs={{ cols: 12 }}
-      >
-        <Col
-          lg={{ span: 1, offset: 1 }}
-          md={{ span: 1, offset: 1 }}
-          sm={{ span: 2 }}
-          xs={{ span: 2 }}
-        >
-          <a href={"/profile"} style={{ paddingLeft: "60%" }}>
-            <FontAwesomeIcon icon={faAngleLeft} size="3x" />
-          </a>
-        </Col>
-        <Col
-          lg={{ span: 8 }}
-          md={{ span: 6 }}
-          sm={{ span: 8 }}
-          xs={{ span: 8 }}
-          style={{ textAlign: "center" }}
-        >
-          <p className="overallViewTitle">Overall View</p>
-        </Col>
-        <Col
-          lg={{ span: 1 }}
-          md={{ span: 1 }}
-          sm={{ span: 2 }}
-          xs={{ span: 2 }}
-          style={{ padding: 0 }}
-        >
-          <a href={"/profile"}>
-            <FontAwesomeIcon icon={faAngleRight} size="3x" />
-          </a>
-        </Col>
-      </Row>
-      <Row
-        xl={{ cols: 12 }}
-        lg={{ cols: 12 }}
-        md={{ cols: 12 }}
-        sm={{ cols: 12 }}
-        xs={{ cols: 12 }}
-      >
-        <Col></Col>
-        <Col
-          lg={{ span: 8 }}
-          md={{ span: 8 }}
-          sm={{ span: 8 }}
-          xs={{ span: 8 }}
-          style={{ textAlign: "center" }}
-        >
-          <div className="">
-            {/* <p className=" overallViewStats ">Measurable Progress</p> */}
-            <p className=" overallViewStats ">Good {percentOfGoodNodes}%</p>
-            <p className=" overallViewStats yellowText ">
-              Risk {percentOfBadNodes}%
-            </p>
-            <p className=" overallViewStats redText ">
-              Alert {percentOfReallyBadNodes}%
-            </p>
-          </div>
-        </Col>
-        <Col></Col>
-      </Row>
+        <Row style={{ height: 30 }}></Row>
         <Row
           xl={{ cols: 12 }}
           lg={{ cols: 12 }}
           md={{ cols: 12 }}
           sm={{ cols: 12 }}
           xs={{ cols: 12 }}
-          style={{height: window.innerHeight * 0.8}}
+        >
+          <Col
+            lg={{ span: 1, offset: 1 }}
+            md={{ span: 1, offset: 1 }}
+            sm={{ span: 2 }}
+            xs={{ span: 2 }}
+          >
+            <a href={"/profile"} style={{ paddingLeft: "60%" }}>
+              <FontAwesomeIcon icon={faAngleLeft} size="3x" />
+            </a>
+          </Col>
+          <Col
+            lg={{ span: 8 }}
+            md={{ span: 6 }}
+            sm={{ span: 8 }}
+            xs={{ span: 8 }}
+            style={{ textAlign: "center" }}
+          >
+            <p className="overallViewTitle">Overall View</p>
+          </Col>
+          <Col
+            lg={{ span: 1 }}
+            md={{ span: 1 }}
+            sm={{ span: 2 }}
+            xs={{ span: 2 }}
+            style={{ padding: 0 }}
+          >
+            <a href={"/profile"}>
+              <FontAwesomeIcon icon={faAngleRight} size="3x" />
+            </a>
+          </Col>
+        </Row>
+        <Row
+          xl={{ cols: 12 }}
+          lg={{ cols: 12 }}
+          md={{ cols: 12 }}
+          sm={{ cols: 12 }}
+          xs={{ cols: 12 }}
+        >
+          <Col></Col>
+          <Col
+            lg={{ span: 8 }}
+            md={{ span: 8 }}
+            sm={{ span: 8 }}
+            xs={{ span: 8 }}
+            style={{ textAlign: "center" }}
+          >
+            <div className="">
+              {/* <p className=" overallViewStats ">Measurable Progress</p> */}
+              <p className=" overallViewStats ">Good {percentOfGoodNodes}%</p>
+              <p className=" overallViewStats yellowText ">
+                Risk {percentOfBadNodes}%
+              </p>
+              <p className=" overallViewStats redText ">
+                Alert {percentOfReallyBadNodes}%
+              </p>
+            </div>
+          </Col>
+          <Col></Col>
+        </Row>
+        <Row
+          xl={{ cols: 12 }}
+          lg={{ cols: 12 }}
+          md={{ cols: 12 }}
+          sm={{ cols: 12 }}
+          xs={{ cols: 12 }}
+          style={{ height: window.innerHeight * 0.8 }}
         >
           <Col
             lg={{ span: 3 }}
@@ -156,7 +155,8 @@ export default function DesktopView(nodetarget) {
                   Planned Delivery Date: {nodeData.nodes[nodeId].pDD}
                 </p>
                 <p className={"modalPTags"}>
-                  Forecast Estimated Time of completion: {nodeData.nodes[nodeId].eTOC}
+                  Forecast Estimated Time of completion:{" "}
+                  {nodeData.nodes[nodeId].eTOC}
                 </p>
               </Modal.Body>
             </Modal>

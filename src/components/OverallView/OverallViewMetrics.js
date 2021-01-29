@@ -84,11 +84,11 @@ export default function OverallViewMetrics() {
                 </Table>
               </TreeItem>
             </TreeView>
-            <ListItem>
+            <ListItem   key="1">
               <ListItemText primary="Total Performed Tests/Defects: 10%" />
             </ListItem>
-            <ListItem>
-              <ListItemText primary="Automated Tests: 50%" />
+            <ListItem  key="2" >
+              <ListItemText primary="Automated Tests: 50%"/>
             </ListItem>
           </List>
         </Accordion.Collapse>
@@ -169,7 +169,7 @@ export default function OverallViewMetrics() {
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="2" style={{ backgroundColor: "white" }}>
           <List>
-            <ListItem>
+            <ListItem   key="3">
               <ListItemText primary="Planned/Actual: 80%" />
             </ListItem>
           </List>
@@ -243,10 +243,10 @@ export default function OverallViewMetrics() {
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="4" style={{ backgroundColor: "white" }}>
           <List>
-            <ListItem>
+            <ListItem   key="4">
               <ListItemText primary="Employee Satisfaction: 60%" />
             </ListItem>
-            <ListItem>
+            <ListItem   key="5">
               <ListItemText primary="Employee Engagement: 70%" />
             </ListItem>
           </List>
@@ -260,7 +260,7 @@ export default function OverallViewMetrics() {
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="5">
           <List>
-            <ListItem>
+            <ListItem   key="6">
               <ListItemText primary="Net Promoter Score: 112" />
             </ListItem>
           </List>
