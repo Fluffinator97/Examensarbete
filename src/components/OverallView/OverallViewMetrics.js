@@ -8,7 +8,7 @@ import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Table from "react-bootstrap/Table";
 import TreeView from "@material-ui/lab/TreeView";
-import { TreeItem } from "@material-ui/lab";
+import TreeItem from "@material-ui/lab/TreeItem";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import TableData from "../../context/data/TableData"
