@@ -20,8 +20,6 @@ import BackgroundNBE from "../assets/images/BackgroundNBE.jpg";
 // import Navigation from "./Navigation"
 
 export default function TwoDGraph() {
-
-  console.log(GraphData);
   const fgRef = useRef();
 
   const windowWidth = window.innerWidth;
@@ -101,7 +99,7 @@ export default function TwoDGraph() {
             sm={{ span: 10 }}
             xs={{ span: 10 }}
           >
-            <h1 style={{ textAlign: "center" }}>Epic 1</h1>
+            <h2 style={{ textAlign: "center" }}>Epic 1</h2>
             <h2 className="redText" style={{ textAlign: "center" }}>
               Alert 58%
             </h2>
@@ -178,7 +176,7 @@ export default function TwoDGraph() {
           >
             <Card style={{ marginBottom: "1rem" }}>
               <Card.Header>
-                <h1 className="profileTitle">Involved Features</h1>
+                <h2 className="profileTitle">Involved Features</h2>
               </Card.Header>
               <Card.Body>
                 <ListGroup className="list-group-flush">
@@ -204,7 +202,7 @@ export default function TwoDGraph() {
                 <Accordion>
                   <Card>
                     <Accordion.Toggle as={Card.Header} eventKey="0">
-                      <h1 className="entityTypeTitle">Completed</h1>
+                      <h2 className="entityTypeTitle">Completed</h2>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="0">
                       <Card.Body>
@@ -220,7 +218,7 @@ export default function TwoDGraph() {
 
                   <Card>
                     <Accordion.Toggle as={Card.Header} eventKey="1">
-                      <h1 className="entityTypeTitle">Forecast</h1>
+                      <h2 className="entityTypeTitle">Forecast</h2>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="1">
                       <Card.Body>
@@ -235,7 +233,7 @@ export default function TwoDGraph() {
                   </Card>
                   <Card>
                     <Accordion.Toggle as={Card.Header} eventKey="2">
-                      <h1 className="entityTypeTitle"> Velocity</h1>
+                      <h2 className="entityTypeTitle"> Velocity</h2>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="2">
                       <Card.Body>
@@ -251,7 +249,7 @@ export default function TwoDGraph() {
 
                   <Card>
                     <Accordion.Toggle as={Card.Header} eventKey="3">
-                      <h1 className="entityTypeTitle">Planned vs Actual</h1>
+                      <h2 className="entityTypeTitle">Planned vs Actual</h2>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="3">
                       <Card.Body>
@@ -267,7 +265,7 @@ export default function TwoDGraph() {
 
                   <Card>
                     <Accordion.Toggle as={Card.Header} eventKey="4">
-                      <h1 className="entityTypeTitle">Lead time</h1>
+                      <h2 className="entityTypeTitle">Lead time</h2>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="4">
                       <Card.Body>
@@ -283,7 +281,7 @@ export default function TwoDGraph() {
 
                   <Card>
                     <Accordion.Toggle as={Card.Header} eventKey="5">
-                      <h1 className="entityTypeTitle">Cycle Time</h1>
+                      <h2 className="entityTypeTitle">Cycle Time</h2>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="5">
                       <Card.Body>

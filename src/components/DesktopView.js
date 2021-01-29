@@ -22,7 +22,6 @@ export default function DesktopView(nodetarget) {
     setNodeId(event.currentTarget.getAttribute("id"));
     setShow(true);
   };
-  console.log(nodeId);
 
   const goodNodes = nodeData.nodes.filter((node) => {
     return node.Progress > 50;
