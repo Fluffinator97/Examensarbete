@@ -6,6 +6,8 @@ import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Accordion from "react-bootstrap/Accordion";
 import { ForceGraph2D } from "react-force-graph";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 import GraphData from "../context/data/MockDataFilter";
 import DoubleCircleDiagram from "./Diagrams/DoubleCircleDiagram";
@@ -15,7 +17,7 @@ import Barchart from "./Diagrams/Barchart";
 import LeadTimeChart from "./Diagrams/LeadTimeChart";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BackgroundNBE from "../assets/images/BackgroundNBE.jpg";
-import Navigation from "./Navigation"
+// import Navigation from "./Navigation"
 
 export default function TwoDGraph() {
 
@@ -41,7 +43,76 @@ export default function TwoDGraph() {
         style={{ width: "100%", height: "100%" }}
       ></iframe>
       <Container fluid>
-      <Navigation />
+      <Row style={{ height: 30 }}></Row>
+      <Row
+          xl={{ cols: 12 }}
+          lg={{ cols: 12 }}
+          md={{ cols: 12 }}
+          sm={{ cols: 12 }}
+          xs={{ cols: 12 }}
+        >
+          <Col
+            lg={{ span: 1, offset: 1 }}
+            md={{ span: 1, offset: 1 }}
+            sm={{ span: 2 }}
+            xs={{ span: 2 }}
+          >
+            {" "}
+            <a href={"/overall/metrics"}style={{paddingLeft: "60%"}}>
+              <FontAwesomeIcon icon={faAngleLeft} size="3x" />
+            </a>
+          </Col>
+          <Col
+            lg={{ span: 8 }}
+            md={{ span: 6 }}
+            sm={{ span: 8 }}
+            xs={{ span: 8 }}
+            style={{ textAlign: "center" }}
+          >
+            <h1 className="overallViewTitle">Your Profile</h1>
+          </Col>
+          <Col
+            lg={{ span: 1 }}
+            md={{ span: 1 }}
+            sm={{ span: 2 }}
+            xs={{ span: 2 }}
+          >
+            <a href={"/overall/metrics"}>
+            <FontAwesomeIcon icon={faAngleRight} size="3x"/>
+            </a>
+          </Col>
+        </Row>
+        <Row
+          xl={{ cols: 12 }}
+          lg={{ cols: 12 }}
+          md={{ cols: 12 }}
+          sm={{ cols: 12 }}
+          xs={{ cols: 12 }}
+        >
+          <Col
+            lg={{ span: 1 }}
+            md={{ span: 1 }}
+            sm={{ span: 1 }}
+            xs={{ span: 1 }}
+          ></Col>
+          <Col
+            lg={{ span: 10 }}
+            md={{ span: 10 }}
+            sm={{ span: 10 }}
+            xs={{ span: 10 }}
+          >
+            <h1 style={{ textAlign: "center" }}>Epic 1</h1>
+            <h2 className="redText" style={{ textAlign: "center" }}>
+              Alert 58%
+            </h2>
+          </Col>
+          <Col
+            lg={{ span: 1 }}
+            md={{ span: 1 }}
+            sm={{ span: 1 }}
+            xs={{ span: 1 }}
+          ></Col>
+        </Row>
         <Row
           xl={{ cols: 12 }}
           lg={{ cols: 12 }}
@@ -63,7 +134,7 @@ export default function TwoDGraph() {
               height={150}
               nodeLabel="name"
               nodeVal={2}
-              nodeColor={node => node.group <= 40 ? "red" : "white"}
+              nodeColor={node => node.Progress <= 40 ? "red" : "white"}
               nodeOpacity={10}
               linkColor={link => "white"}
               linkWidth={1}

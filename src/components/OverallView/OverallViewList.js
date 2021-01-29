@@ -1,13 +1,13 @@
 import React from "react";
-// import DesktopView from "../DesktopView"
-import properMockData from "../../context/data/properMockData";
+import nodeData from '../../context/data/nodeData'
+
 
 export default function OverallViewList({ nodetarget, nodeClickHandler }) {
   const boxHeight = window.innerHeight - 315;
 
-  const badNodes = properMockData.nodes
+  const badNodes = nodeData.nodes
     .filter((node) => {
-      return node.group > 40 && node.group <= 50;
+      return node.Progress > 40 && node.Progress <= 50;
     })
     .map((node) => (
       <li
@@ -21,9 +21,9 @@ export default function OverallViewList({ nodetarget, nodeClickHandler }) {
       </li>
     ));
 
-  const reallyBadNodes = properMockData.nodes
+  const reallyBadNodes = nodeData.nodes
     .filter((node) => {
-      return node.group <= 40;
+      return node.Progress <= 40;
     })
     .map((node) => (
       <li
@@ -36,9 +36,9 @@ export default function OverallViewList({ nodetarget, nodeClickHandler }) {
       </li>
     ));
 
-  const goodNodes = properMockData.nodes
+  const goodNodes = nodeData.nodes
     .filter((node) => {
-      return node.group > 50;
+      return node.Progress > 50;
     })
     .filter((node) => {
       return !node.name.includes("ST ") && !node.name.includes("Volvo");

@@ -5,7 +5,7 @@ import Col from "react-bootstrap/Col";
 import { Switch, Route, useParams } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import properMockData from "../../context/data/properMockData";
+import nodeData from '../../context/data/nodeData'
 
 import ThreeDGraph from "./3DGraph";
 import OverallViewList from "./OverallViewList";
@@ -25,17 +25,17 @@ export default function OverallView() {
   const [padder, setPadder] = useState(0);
 
 
-  const goodNodes = properMockData.nodes.filter((node) => {
+  const goodNodes = nodeData.nodes.filter((node) => {
     return node.group > 50;
   });
-  const badNodes = properMockData.nodes.filter((node) => {
+  const badNodes = nodeData.nodes.filter((node) => {
     return node.group > 40 && node.group <= 50;
   });
-  const reallyBadNodes = properMockData.nodes.filter((node) => {
+  const reallyBadNodes = nodeData.nodes.filter((node) => {
     return node.group <= 40;
   });
 
-  const allNodes = properMockData.nodes.length;
+  const allNodes = nodeData.nodes.length;
   const numberOfGoodNodes = (goodNodes.length / allNodes) * 100;
   const numberOfBadNodes = (badNodes.length / allNodes) * 100;
   const numberOfReallyBadNodes = (reallyBadNodes.length / allNodes) * 100;

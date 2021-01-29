@@ -3,12 +3,14 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Modal from "react-bootstrap/Modal";
+import nodeData from '../context/data/nodeData'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
-import properMockData from "../context/data/properMockData";
 import ThreeDGraph from "./OverallView/3DGraph";
 import OverallViewList from "./OverallView/OverallViewList";
 import OverallViewMetrics from "./OverallView/OverallViewMetrics";
-import Navigation from "./Navigation"
+// import Navigation from "./Navigation"
 
 export default function DesktopView(nodetarget) {
   const [ nodeId, setNodeId ] = useState(0);
@@ -23,10 +25,94 @@ export default function DesktopView(nodetarget) {
   };
   console.log(nodeId);
 
+  const goodNodes = nodeData.nodes.filter((node) => {
+    return node.Progress > 50;
+  });
+  const badNodes = nodeData.nodes.filter((node) => {
+    return node.Progress > 40 && node.Progress <= 50;
+  });
+  const reallyBadNodes = nodeData.nodes.filter((node) => {
+    return node.Progress <= 40;
+  });
+
+  const allNodes = nodeData.nodes.length;
+  const numberOfGoodNodes = (goodNodes.length / allNodes) * 100;
+  const numberOfBadNodes = (badNodes.length / allNodes) * 100;
+  const numberOfReallyBadNodes = (reallyBadNodes.length / allNodes) * 100;
+  const percentOfGoodNodes = numberOfGoodNodes.toFixed(2);
+  const percentOfBadNodes = numberOfBadNodes.toFixed(2);
+  const percentOfReallyBadNodes = numberOfReallyBadNodes.toFixed(2);
+
   return (
     <div className="desktopViewBox">
       <Container fluid>
-        <Navigation />
+      <Row style={{ height: 30 }}></Row>
+      <Row
+        xl={{ cols: 12 }}
+        lg={{ cols: 12 }}
+        md={{ cols: 12 }}
+        sm={{ cols: 12 }}
+        xs={{ cols: 12 }}
+      >
+        <Col
+          lg={{ span: 1, offset: 1 }}
+          md={{ span: 1, offset: 1 }}
+          sm={{ span: 2 }}
+          xs={{ span: 2 }}
+        >
+          <a href={"/profile"} style={{ paddingLeft: "60%" }}>
+            <FontAwesomeIcon icon={faAngleLeft} size="3x" />
+          </a>
+        </Col>
+        <Col
+          lg={{ span: 8 }}
+          md={{ span: 6 }}
+          sm={{ span: 8 }}
+          xs={{ span: 8 }}
+          style={{ textAlign: "center" }}
+        >
+          <p className="overallViewTitle">Overall View</p>
+        </Col>
+        <Col
+          lg={{ span: 1 }}
+          md={{ span: 1 }}
+          sm={{ span: 2 }}
+          xs={{ span: 2 }}
+          style={{ padding: 0 }}
+        >
+          <a href={"/profile"}>
+            <FontAwesomeIcon icon={faAngleRight} size="3x" />
+          </a>
+        </Col>
+      </Row>
+      <Row
+        xl={{ cols: 12 }}
+        lg={{ cols: 12 }}
+        md={{ cols: 12 }}
+        sm={{ cols: 12 }}
+        xs={{ cols: 12 }}
+      >
+        <Col></Col>
+        <Col
+          lg={{ span: 8 }}
+          md={{ span: 8 }}
+          sm={{ span: 8 }}
+          xs={{ span: 8 }}
+          style={{ textAlign: "center" }}
+        >
+          <div className="">
+            {/* <p className=" overallViewStats ">Measurable Progress</p> */}
+            <p className=" overallViewStats ">Good {percentOfGoodNodes}%</p>
+            <p className=" overallViewStats yellowText ">
+              Risk {percentOfBadNodes}%
+            </p>
+            <p className=" overallViewStats redText ">
+              Alert {percentOfReallyBadNodes}%
+            </p>
+          </div>
+        </Col>
+        <Col></Col>
+      </Row>
         <Row
           xl={{ cols: 12 }}
           lg={{ cols: 12 }}
@@ -59,19 +145,19 @@ export default function DesktopView(nodetarget) {
           >
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>{properMockData.nodes[nodeId].name}</Modal.Title>
+                <Modal.Title>{nodeData.nodes[nodeId].name}</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <p className={"modalPTags"}>Node ID: {nodeId}</p>
                 <p className={"modalPTags"}>
-                  Progress of Delivery: {properMockData.nodes[nodeId].pOD}
+                  Progress of Delivery: {nodeData.nodes[nodeId].pOD}
                 </p>
                 <p className={"modalPTags"}>
-                  Planned Delivery Date: {properMockData.nodes[nodeId].pDD}
+                  Planned Delivery Date: {nodeData.nodes[nodeId].pDD}
                 </p>
                 <p className={"modalPTags"}>
                   Forecast Estimated Time of completion:{" "}
-                  {properMockData.nodes[nodeId].eTOC}
+                  {nodeData.nodes[nodeId].eTOC}
                 </p>
               </Modal.Body>
             </Modal>
