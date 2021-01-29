@@ -19,6 +19,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import BackgroundNBE from "../assets/images/BackgroundNBE.jpg";
 
 export default function TwoDGraph() {
+
+  console.log(GraphData);
   const fgRef = useRef();
 
   const windowWidth = window.innerWidth;
@@ -32,10 +34,10 @@ export default function TwoDGraph() {
         height={windowHeight}
         style={{objectFit: "cover"}}
         className="backgroundImageFixer"
-        alt="Background couldn't load"
+        alt="hello"
       ></img>
       <iframe
-        className="pageFrame"
+        id="overall"
         title="overall"
         style={{ width: "100%", height: "100%" }}
       ></iframe>
@@ -66,7 +68,7 @@ export default function TwoDGraph() {
             xs={{ span: 8 }}
             style={{ textAlign: "center" }}
           >
-            <h1 className="header">Your Profile</h1>
+            <h1 className="overallViewTitle">Your Profile</h1>
           </Col>
           <Col
             lg={{ span: 1 }}
@@ -98,7 +100,7 @@ export default function TwoDGraph() {
             sm={{ span: 10 }}
             xs={{ span: 10 }}
           >
-            <h2 style={{ textAlign: "center" }}>Epic 1</h2>
+            <h1 style={{ textAlign: "center" }}>Epic 1</h1>
             <h2 className="redText" style={{ textAlign: "center" }}>
               Alert 58%
             </h2>
@@ -175,7 +177,7 @@ export default function TwoDGraph() {
           >
             <Card style={{ marginBottom: "1rem" }}>
               <Card.Header>
-                <p className="profileTitle">Involved Features</p>
+                <h1 className="profileTitle">Involved Features</h1>
               </Card.Header>
               <Card.Body>
                 <ListGroup className="list-group-flush">
@@ -194,18 +196,18 @@ export default function TwoDGraph() {
 
             <Card style={{ marginBottom: 100, padding: 0 }}>
               <Card.Header>
-                <h1 className="kpiTitle">KPI's</h1>
+                <h1 className="profileTitle">KPI's</h1>
                 {/* <p>Story Points: 100</p> */}
               </Card.Header>
               <Card.Body style={{ padding: 1, paddingTop: 10 }}>
                 <Accordion>
                   <Card>
                     <Accordion.Toggle as={Card.Header} eventKey="0">
-                      <h2 className="kpiTitle">Completed</h2>
+                      <h1 className="entityTypeTitle">Completed</h1>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="0">
                       <Card.Body>
-                        <p className="globalP">
+                        <p className="entityExplanation">
                           Nunc lobortis dui sed justo mattis auctor. Praesent
                           erat magna, finibus eu leo a, volutpat viverra risus.
                           Aenean pellentesque interdum erat ut lacinia.
@@ -217,11 +219,11 @@ export default function TwoDGraph() {
 
                   <Card>
                     <Accordion.Toggle as={Card.Header} eventKey="1">
-                      <h2 className="kpiTitle">Forecast</h2>
+                      <h1 className="entityTypeTitle">Forecast</h1>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="1">
                       <Card.Body>
-                        <p className="globalP">
+                        <p className="entityExplanation">
                           Nunc lobortis dui sed justo mattis auctor. Praesent
                           erat magna, finibus eu leo a, volutpat viverra risus.
                           Aenean pellentesque interdum erat ut lacinia.
@@ -232,11 +234,11 @@ export default function TwoDGraph() {
                   </Card>
                   <Card>
                     <Accordion.Toggle as={Card.Header} eventKey="2">
-                      <h2 className="kpiTitle"> Velocity</h2>
+                      <h1 className="entityTypeTitle"> Velocity</h1>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="2">
                       <Card.Body>
-                        <p className="globalP">
+                        <p className="entityExplanation">
                           Nunc lobortis dui sed justo mattis auctor. Praesent
                           erat magna, finibus eu leo a, volutpat viverra risus.
                           Aenean pellentesque interdum erat ut lacinia.
@@ -248,11 +250,11 @@ export default function TwoDGraph() {
 
                   <Card>
                     <Accordion.Toggle as={Card.Header} eventKey="3">
-                      <h2 className="kpiTitle">Planned vs Actual</h2>
+                      <h1 className="entityTypeTitle">Planned vs Actual</h1>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="3">
                       <Card.Body>
-                        <p className="globalP">
+                        <p className="entityExplanation">
                           Nunc lobortis dui sed justo mattis auctor. Praesent
                           erat magna, finibus eu leo a, volutpat viverra risus.
                           Aenean pellentesque interdum erat ut lacinia.
@@ -264,11 +266,11 @@ export default function TwoDGraph() {
 
                   <Card>
                     <Accordion.Toggle as={Card.Header} eventKey="4">
-                      <h2 className="kpiTitle">Lead time</h2>
+                      <h1 className="entityTypeTitle">Lead time</h1>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="4">
                       <Card.Body>
-                        <p className="globalP">
+                        <p className="entityExplanation">
                           Nunc lobortis dui sed justo mattis auctor. Praesent
                           erat magna, finibus eu leo a, volutpat viverra risus.
                           Aenean pellentesque interdum erat ut lacinia.
@@ -280,11 +282,11 @@ export default function TwoDGraph() {
 
                   <Card>
                     <Accordion.Toggle as={Card.Header} eventKey="5">
-                      <h2 className="kpiTitle">Cycle Time</h2>
+                      <h1 className="entityTypeTitle">Cycle Time</h1>
                     </Accordion.Toggle>
                     <Accordion.Collapse eventKey="5">
                       <Card.Body>
-                        <p className="globalP">
+                        <p className="entityExplanation">
                           Nunc lobortis dui sed justo mattis auctor. Praesent
                           erat magna, finibus eu leo a, volutpat viverra risus.
                           Aenean pellentesque interdum erat ut lacinia.
