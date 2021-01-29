@@ -3,14 +3,17 @@ import { PieChart, Pie, ResponsiveContainer, Cell, Legend } from "recharts";
 
 function DoubleCircleDiagram() {
 
+  //data for chart
 const data = [
   { name: 'Work Left', value: Math.floor(Math.random() * 100)},
   { name: 'Work Done', value: Math.floor(Math.random() * 100) },
 ];
 
+//picking color for chart
 const COLORS = ['#f90909', '#4ad43d'];
 
 const RADIAN = Math.PI / 180;
+// making a custom label for the chart
 const renderCustomizedLabel = ({
   cx, cy, midAngle, innerRadius, outerRadius, percent, index,
 }) => {
@@ -26,6 +29,7 @@ const renderCustomizedLabel = ({
 };
 
     return (
+      // rendering chart
       <ResponsiveContainer width="100%" height={250}>
       <PieChart >
         <Legend />

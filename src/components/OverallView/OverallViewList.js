@@ -1,11 +1,11 @@
 import React from "react";
-import nodeData from '../../context/data/nodeData'
-
+import nodeData from "../../context/data/nodeData";
 
 export default function OverallViewList({ nodetarget, nodeClickHandler }) {
-
+  //setts height for list box
   const boxHeight = window.innerHeight - 315;
 
+  //filters the Good, Bad and really bad nodes to display in the list and maps nodes
   const badNodes = nodeData.nodes
     .filter((node) => {
       return node.Progress > 40 && node.Progress <= 50;
@@ -21,7 +21,8 @@ export default function OverallViewList({ nodetarget, nodeClickHandler }) {
         <p>{node.name}</p>
       </li>
     ));
-
+  //filters the Good, Bad and really bad nodes to display in the list and maps nodes
+  
   const reallyBadNodes = nodeData.nodes
     .filter((node) => {
       return node.Progress <= 40;
@@ -37,6 +38,7 @@ export default function OverallViewList({ nodetarget, nodeClickHandler }) {
         <p>{node.name}</p>
       </li>
     ));
+    //filters the Good, Bad and really bad nodes to display in the list and maps nodes
 
   const goodNodes = nodeData.nodes
     .filter((node) => {
@@ -60,6 +62,7 @@ export default function OverallViewList({ nodetarget, nodeClickHandler }) {
   return (
     <div style={{ height: boxHeight, overflowY: "scroll" }}>
       <ol>
+        {/* render nodes in a list */}
         {badNodes}
         {reallyBadNodes}
         {goodNodes}

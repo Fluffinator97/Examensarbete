@@ -10,6 +10,8 @@ import {
   ResponsiveContainer
 } from "recharts";
 
+
+// data for chart
 const data = [
   {
     name: "Page A",
@@ -50,6 +52,7 @@ const data = [
 
 function Barchart() {
   return (
+    // rendering chart
     <ResponsiveContainer width="100%" height={250}>
     <BarChart
         width={200}

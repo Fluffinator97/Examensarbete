@@ -26,26 +26,15 @@
   background-color: #555;
 }
 
-.first {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-.splashScreenHeader {
+.splashHeader {
   font-family: "Times New Roman", Times, serif;
   position: absolute;
   z-index: 10;
   text-align: center;
   width: 100%;
   color: rgb(127, 127, 127);
-  margin-top: 50px;
 }
 
-.splashScreenSize {
-  width: 100%;
-  text-align: center;
-}
 
 .splashScreenTitleBox {
   font-family: "Times New Roman", Times, serif;
@@ -57,14 +46,6 @@
   bottom: 40%;
 }
 
-.splashScreenFooter {
-  font-family: "Times New Roman", Times, serif;
-  position: absolute;
-  bottom: 10px;
-  width: 100%;
-  text-align: center;
-}
-
 .splashScreenTitle {
   font-family: "Times New Roman", Times, serif;
   position: absolute;
@@ -73,18 +54,10 @@
   width: 100%;
 }
 
-.overallViewTitle {
+.header {
   margin: 0 5% 0 5%;
   font-family: "Times New Roman", Times, serif;
   text-align: center;
-  font-size: 25px;
-}
-
-.entityTitle {
-  margin: 5% 0 5%;
-  font-family: "Times New Roman", Times, serif;
-  text-align: center;
-  font-size: 25px;
 }
 
 .overallViewSelectionButtons {
@@ -92,7 +65,7 @@
   height: 60px;
 }
 
-#overall {
+.pageFrame {
   position: fixed;
   border-width: 5px 5px 0px 5px;
   border-style: solid;
@@ -102,7 +75,7 @@
   border-radius: 10px;
 }
 
-.entityTypeTitle {
+.kpiTitle {
   margin: 5% 0 5%;
   font-family: "Times New Roman", Times, serif;
   text-align: center;
@@ -117,16 +90,30 @@
   font-size: 25px;
 }
 
-.entityExplanation {
+.acordionToggleBackground {
+  background-color: lightgray;
+}
+
+.acordionCollapseBackground {
+  background-color: white;
+  height: 100%;
+}
+
+.globalP {
   font-family: "Times New Roman", Times, serif;
   text-align: center;
   color: rgb(86, 80, 60);
+  font-size: 20px;
 }
 
-.qualityPStyle {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 17px;
+.spacingP {
+  margin: 5px 0 5px 0;
 }
+
+.removeMargin {
+  margin: 0;
+}
+
 .overallViewSelectionButtonFlex {
   background-color: black;
   width: 100%;
@@ -178,30 +165,6 @@
   position: fixed;
 }
 
-.overallViewProductNameBlack {
-  font-family: "Times New Roman", Times, serif;
-  width: 100%;
-  bottom: 0;
-  justify-content: center;
-  position: fixed;
-  z-index: 1000000000;
-  margin: 0 0 20px 0;
-  color: black;
-  text-align: center;
-}
-
-.overallViewProductNameMPBlack {
-  font-family: "Times New Roman", Times, serif;
-  width: 100%;
-  bottom: 0;
-  justify-content: center;
-  position: fixed;
-  z-index: 1000000000;
-  margin: 0 0 3px 0;
-  color: black;
-  text-align: center;
-}
-
 .overallViewStats {
   font-family: "Times New Roman", Times, serif;
   width: 100%;
@@ -227,6 +190,7 @@
   font-family: "Times New Roman", Times, serif;
   margin: 0;
   cursor: pointer;
+  font-size: 20px;
 }
 
 .desktopViewBox {

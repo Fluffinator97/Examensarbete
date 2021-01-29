@@ -9,9 +9,8 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-
-function BurnDownDiagram() {
-  const data = [
+//data for chart
+const data = [
     {
       name: "Vecka 1",
       Actual: 100,
@@ -65,7 +64,11 @@ function BurnDownDiagram() {
 
   ];
 
+function BurnDownDiagram() {
+  
+
   return (
+    // rendering chart
     <ResponsiveContainer width="100%" height={250}>
       <LineChart
         width={200}

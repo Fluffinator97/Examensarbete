@@ -4,20 +4,21 @@ import { ForceGraph3D } from "react-force-graph";
 import nodeData from '../../context/data/nodeData'
 
 export default function ThreeDGraph() {
+  // checking window size to see if it's on a mobile or desktop
   const mql = window.matchMedia("(max-width: 1000px)");
   let mobileView = mql.matches;
   
-  
+  //setting width for GraphBox based on if it's mobile or desktop
   let windowWidth = window.innerWidth;
     if (mobileView === true) {
-      windowWidth = window.innerWidth ;
+      windowWidth = window.innerWidth * 0.9 ;
     } else {
-      windowWidth = window.innerWidth * 0.6;
+      windowWidth = window.innerWidth * 0.5;
     }
-
-  // Setting Sizes from the Graph
+  // Setting height from the Graph
   const windowHeight = window.innerHeight - 300;
-  // Setting The dist for the links
+
+  // Setting The dist (how long the links are) for the links
   const distRef = useRef(null);
 
   useEffect(() => {
@@ -25,7 +26,7 @@ export default function ThreeDGraph() {
   });
 
   return (
-    <div className="first" style={{ height: windowHeight }}>
+    <div style={{ height: windowHeight }}>
       {/* Rendering the Graph */}
       <ForceGraph3D
         graphData={nodeData}

@@ -9,9 +9,8 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-
-function VelocityChart() {
-  const data = [
+//data for chart
+const data = [
     {
       name: "Vecka 1",
       Estimated: 50,
@@ -54,7 +53,10 @@ function VelocityChart() {
     }
   ];
 
+function VelocityChart() {
+  
   return (
+    // rendering chart
     <ResponsiveContainer width="100%" height={250}>
       <LineChart
         width={200}

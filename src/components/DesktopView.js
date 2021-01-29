@@ -10,19 +10,23 @@ import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import ThreeDGraph from "./OverallView/3DGraph";
 import OverallViewList from "./OverallView/OverallViewList";
 import OverallViewMetrics from "./OverallView/OverallViewMetrics";
-// import Navigation from "./Navigation"
+import BackgroundNBE from "../assets/images/BackgroundNBE.jpg";
 
 export default function DesktopView(nodetarget) {
+  // set state for clicking the list objects and getting the id to display in the modal
   const [nodeId, setNodeId] = useState(0);
+  // state to open and close modal
   const [show, setShow] = useState(false);
-
+  //Closes modal
   const handleClose = () => setShow(false);
+  //Click event for list
 
   const nodeClickHandler = (event) => {
     setNodeId(event.currentTarget.getAttribute("id"));
     setShow(true);
   };
-
+  
+  //filters the Good, Bad and really bad nodes to display in the list and maps nodes
   const goodNodes = nodeData.nodes.filter((node) => {
     return node.Progress > 50;
   });
@@ -32,6 +36,7 @@ export default function DesktopView(nodetarget) {
   const reallyBadNodes = nodeData.nodes.filter((node) => {
     return node.Progress <= 40;
   });
+  //equations to calculate the percentages and displaying it 
 
   const allNodes = nodeData.nodes.length;
   const numberOfGoodNodes = (goodNodes.length / allNodes) * 100;
@@ -43,6 +48,12 @@ export default function DesktopView(nodetarget) {
 
   return (
     <div className="desktopViewBox">
+      <img
+        src={BackgroundNBE}
+        style={{ objectFit: "cover" }}
+        className="backgroundImageFixer"
+        alt="Background couldn't load"
+      ></img>
       <Container fluid>
         <Row style={{ height: 30 }}></Row>
         <Row
@@ -69,7 +80,7 @@ export default function DesktopView(nodetarget) {
             xs={{ span: 8 }}
             style={{ textAlign: "center" }}
           >
-            <p className="overallViewTitle">Overall View</p>
+            <h1 className="header">Overall View</h1>
           </Col>
           <Col
             lg={{ span: 1 }}
@@ -99,7 +110,6 @@ export default function DesktopView(nodetarget) {
             style={{ textAlign: "center" }}
           >
             <div className="">
-              {/* <p className=" overallViewStats ">Measurable Progress</p> */}
               <p className=" overallViewStats ">Good {percentOfGoodNodes}%</p>
               <p className=" overallViewStats yellowText ">
                 Risk {percentOfBadNodes}%

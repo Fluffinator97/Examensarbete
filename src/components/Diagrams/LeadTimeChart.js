@@ -9,8 +9,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-
-function LeadTimeChart() {
+// data for chart
   const data = [
     {
       name: "Before agile",
@@ -30,7 +29,9 @@ function LeadTimeChart() {
     },
   ];
 
+function LeadTimeChart() {
   return (
+    // rendering chart
     <ResponsiveContainer width="100%" height={250}>
       <LineChart
         width={200}

@@ -1,37 +1,40 @@
 import React from "react";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ExpandLessIcon from "@material-ui/icons/ExpandLess";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import Table from "react-bootstrap/Table";
 import TreeView from "@material-ui/lab/TreeView";
 import TreeItem from "@material-ui/lab/TreeItem";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import TableData from "../../context/data/TableData"
+import TableData from "../../context/data/TableData";
 
 export default function OverallViewMetrics() {
-
   return (
     <div className="textAndGraphBindingBox">
+      {/* Code for making an accordion(box with expandable boxes) */}
       <Accordion>
+        {/* Toggles the specific accordion tab based on the eventKey */}
         <Accordion.Toggle
           as={Card.Header}
           eventKey="0"
-          style={{ backgroundColor: "lightgrey" }}
+          className="acordionToggleBackground"
         >
           Quality
         </Accordion.Toggle>
-        <Accordion.Collapse eventKey="0" style={{ backgroundColor: "white" }}>
-          <List>
+        {/* The content that is shown when the corresponding eventKey is toggled */}
+        <Accordion.Collapse eventKey="0" className="acordionCollapseBackground">
+          <>
             <TreeView
-              defaultCollapseIcon={<ExpandLessIcon />}
-              defaultExpandIcon={<ExpandMoreIcon />}
+              defaultCollapseIcon={
+                <FontAwesomeIcon icon={faArrowDown} size="3x" />
+              }
+              defaultExpandIcon={
+                <FontAwesomeIcon icon={faArrowRight} size="3x" />
+              }
             >
-              <TreeItem nodeId="1" label="Number of Defects">
+              <TreeItem nodeId="1" label="Number of Defects" onClick>
                 <Table responsive size="sm">
                   <thead>
                     <tr>
@@ -42,18 +45,14 @@ export default function OverallViewMetrics() {
                     </tr>
                   </thead>
                   <tbody>
-                  {
-                    TableData.NumberofDefects
-                    .map((metric) => (
-                      <tr
-                        // key={metric.Location}
-                      >
+                    {TableData.NumberofDefects.map((metric) => (
+                      <tr>
                         <td>{metric.Location}</td>
                         <td>{metric.High}</td>
                         <td>{metric.Medium}</td>
                         <td>{metric.Low}</td>
-                      </tr>))
-                  }
+                      </tr>
+                    ))}
                   </tbody>
                 </Table>
               </TreeItem>
@@ -68,42 +67,40 @@ export default function OverallViewMetrics() {
                     </tr>
                   </thead>
                   <tbody>
-                  {
-                    TableData.AverageLeadTime
-                    .map((metric) => (
-                      <tr
-                        // key={metric.Location}
-                      >
+                    {TableData.AverageLeadTime.map((metric) => (
+                      <tr>
                         <td>{metric.Location}</td>
                         <td>{metric.High}</td>
                         <td>{metric.Medium}</td>
                         <td>{metric.Low}</td>
-                      </tr>))
-                  }
+                      </tr>
+                    ))}
                   </tbody>
                 </Table>
               </TreeItem>
             </TreeView>
-            <ListItem   key="1">
-              <ListItemText primary="Total Performed Tests/Defects: 10%" />
-            </ListItem>
-            <ListItem  key="2" >
-              <ListItemText primary="Automated Tests: 50%"/>
-            </ListItem>
-          </List>
+            <p className="globalP spacingP">
+              Total Performed Tests/Defects: 10%
+            </p>
+            <p className="globalP removeMargin">Automated Tests: 50%</p>
+          </>
         </Accordion.Collapse>
         <Accordion.Toggle
           as={Card.Header}
           eventKey="1"
-          style={{ backgroundColor: "lightgrey" }}
+          className="acordionToggleBackground"
         >
           Productivity
         </Accordion.Toggle>
-        <Accordion.Collapse eventKey="1" style={{ backgroundColor: "white" }}>
-          <List>
+        <Accordion.Collapse eventKey="1" className="acordionCollapseBackground">
+          <>
             <TreeView
-              defaultCollapseIcon={<ExpandLessIcon />}
-              defaultExpandIcon={<ExpandMoreIcon />}
+              defaultCollapseIcon={
+                <FontAwesomeIcon icon={faArrowDown} size="3x" />
+              }
+              defaultExpandIcon={
+                <FontAwesomeIcon icon={faArrowRight} size="3x" />
+              }
             >
               <TreeItem nodeId="3" label="Number of Deliveries">
                 <Table responsive size="sm">
@@ -116,18 +113,14 @@ export default function OverallViewMetrics() {
                     </tr>
                   </thead>
                   <tbody>
-                  {
-                    TableData.NumberofDeliveries
-                    .map((metric) => (
-                      <tr
-                        // key={metric.Phase}
-                      >
+                    {TableData.NumberofDeliveries.map((metric) => (
+                      <tr>
                         <td>{metric.Phase}</td>
                         <td>{metric.Epic}</td>
                         <td>{metric.Feature}</td>
                         <td>{metric.Story}</td>
-                      </tr>))
-                  }
+                      </tr>
+                    ))}
                   </tbody>
                 </Table>
               </TreeItem>
@@ -142,50 +135,46 @@ export default function OverallViewMetrics() {
                     </tr>
                   </thead>
                   <tbody>
-                  {
-                    TableData.DeliveredStoryPoints
-                    .map((metric) => (
-                      <tr
-                        // key={metric.Phase}
-                      >
+                    {TableData.DeliveredStoryPoints.map((metric) => (
+                      <tr>
                         <td>{metric.Phase}</td>
                         <td>{metric.Epic}</td>
                         <td>{metric.Feature}</td>
                         <td>{metric.Story}</td>
-                      </tr>))
-                  }
+                      </tr>
+                    ))}
                   </tbody>
                 </Table>
               </TreeItem>
             </TreeView>
-          </List>
+          </>
         </Accordion.Collapse>
         <Accordion.Toggle
           as={Card.Header}
           eventKey="2"
-          style={{ backgroundColor: "lightgrey" }}
+          className="acordionToggleBackground"
         >
           Predictability
         </Accordion.Toggle>
-        <Accordion.Collapse eventKey="2" style={{ backgroundColor: "white" }}>
-          <List>
-            <ListItem   key="3">
-              <ListItemText primary="Planned/Actual: 80%" />
-            </ListItem>
-          </List>
+        <Accordion.Collapse eventKey="2" className="acordionCollapseBackground">
+          <p className="globalP spacingP">Planned/Actual: 80%</p>
         </Accordion.Collapse>
         <Accordion.Toggle
           as={Card.Header}
           eventKey="3"
-          style={{ backgroundColor: "lightgrey" }}
+          className="acordionToggleBackground"
         >
           TTM
         </Accordion.Toggle>
-        <Accordion.Collapse eventKey="3">
-          <List>
+        <Accordion.Collapse eventKey="3" className="acordionCollapseBackground">
+          <>
             <TreeView
-              defaultCollapseIcon={<ExpandLessIcon />}
-              defaultExpandIcon={<ExpandMoreIcon />}
+              defaultCollapseIcon={
+                <FontAwesomeIcon icon={faArrowDown} size="3x" />
+              }
+              defaultExpandIcon={
+                <FontAwesomeIcon icon={faArrowRight} size="3x" />
+              }
             >
               <TreeItem nodeId="5" label="Cycle Time">
                 <Table responsive size="sm">
@@ -196,16 +185,12 @@ export default function OverallViewMetrics() {
                     </tr>
                   </thead>
                   <tbody>
-                  {
-                    TableData.CycleTime
-                    .map((metric) => (
-                      <tr
-                        // key={metric.Phase}
-                      >
+                    {TableData.CycleTime.map((metric) => (
+                      <tr>
                         <td>{metric.CycleTime}</td>
                         <td>{metric.NrDays}</td>
-                      </tr>))
-                  }
+                      </tr>
+                    ))}
                   </tbody>
                 </Table>
               </TreeItem>
@@ -218,52 +203,46 @@ export default function OverallViewMetrics() {
                     </tr>
                   </thead>
                   <tbody>
-                  {
-                    TableData.LeadTime
-                    .map((metric) => (
-                      <tr
-                        // key={metric.Phase}
-                      >
+                    {TableData.LeadTime.map((metric) => (
+                      <tr>
                         <td>{metric.CycleTime}</td>
                         <td>{metric.NrDays}</td>
-                      </tr>))
-                  }
+                      </tr>
+                    ))}
                   </tbody>
                 </Table>
               </TreeItem>
             </TreeView>
-          </List>
+          </>
         </Accordion.Collapse>
         <Accordion.Toggle
           as={Card.Header}
           eventKey="4"
-          style={{ backgroundColor: "lightgrey" }}
+          className="acordionToggleBackground"
         >
           ESI
         </Accordion.Toggle>
-        <Accordion.Collapse eventKey="4" style={{ backgroundColor: "white" }}>
-          <List>
-            <ListItem   key="4">
-              <ListItemText primary="Employee Satisfaction: 60%" />
-            </ListItem>
-            <ListItem   key="5">
-              <ListItemText primary="Employee Engagement: 70%" />
-            </ListItem>
-          </List>
+        <Accordion.Collapse eventKey="4" className="acordionCollapseBackground">
+          <>
+            <p className="globalP" style={{ marginBottom: "5px" }}>
+              Employee Satisfaction: 60%{" "}
+            </p>
+            <p className="globalP" style={{ margin: 0 }}>
+              Employee Engagement: 70%{" "}
+            </p>
+          </>
         </Accordion.Collapse>
         <Accordion.Toggle
           as={Card.Header}
           eventKey="5"
-          style={{ backgroundColor: "lightgrey" }}
+          className="acordionToggleBackground"
         >
           CSI
         </Accordion.Toggle>
-        <Accordion.Collapse eventKey="5">
-          <List>
-            <ListItem   key="6">
-              <ListItemText primary="Net Promoter Score: 112" />
-            </ListItem>
-          </List>
+        <Accordion.Collapse eventKey="5" className="acordionCollapseBackground">
+          <>
+            <p className="globalP">Net Promoter Score: 112</p>
+          </>
         </Accordion.Collapse>
       </Accordion>
     </div>

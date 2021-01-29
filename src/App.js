@@ -24,7 +24,7 @@ export default function App() {
       ) : (
         <Switch>
           <Route exact path="/" component={LaunchScreen} />
-          <Route path="/overall" component={DesktopView} />
+          <Route path="/overall/:name" component={DesktopView} />
           <Route path="/profile" component={ProfileGraph} />
           <Route component={PageNotFound} />
         </Switch>

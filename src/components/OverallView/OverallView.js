@@ -14,27 +14,30 @@ import OverallViewMetrics from "./OverallViewMetrics";
 import BackgroundNBE from "../../assets/images/BackgroundNBE.jpg";
 
 export default function OverallView(nodetarget) {
-  const borderHeight = window.innerHeight - 200;
-  const windowHeight = window.innerHeight;
-  const windowWidth = window.innerWidth;
+  //setting height for screen so metrics fit even when extended
+  const listBoxHeight = window.innerHeight - 200;
 
   const path = window.location.pathname;
   const { name } = useParams();
+  //setting states for which view you have 
   const [metricState, setMetricState] = useState(true);
   const [spaceState, setSpaceState] = useState(false);
   const [listState, setListState] = useState(false);
+  //A state to set padding for the view because i had some problems with height
   const [padder, setPadder] = useState(0);
+  // set state for clicking the list objects and getting the id to display in the modal
   const [nodeId, setNodeId] = useState(0);
+  // state to open and close modal
   const [show, setShow] = useState(false);
 
+  //Closes modal
   const handleClose = () => setShow(false);
-
+  //Click event for list
   const nodeClickHandler = (event) => {
     setNodeId(event.currentTarget.getAttribute("id"));
-
     setShow(true);
   };
-
+  // Some filters to get the node health
   const goodNodes = nodeData.nodes.filter((node) => {
     return node.Progress > 50;
   });
@@ -45,6 +48,7 @@ export default function OverallView(nodetarget) {
     return node.Progress <= 40;
   });
 
+  //equations to calculate the percentages and displaying it 
   const allNodes = nodeData.nodes.length;
   const numberOfGoodNodes = (goodNodes.length / allNodes) * 100;
   const numberOfBadNodes = (badNodes.length / allNodes) * 100;
@@ -53,6 +57,7 @@ export default function OverallView(nodetarget) {
   const percentOfBadNodes = numberOfBadNodes.toFixed(2);
   const percentOfReallyBadNodes = numberOfReallyBadNodes.toFixed(2);
 
+  // If statements to set color of buttons
   if (path === "/overall/Metrics" && metricState === false) {
     setMetricState(true);
     setSpaceState(false);
@@ -74,14 +79,13 @@ export default function OverallView(nodetarget) {
     <div>
       <img
         src={BackgroundNBE}
-        width={windowWidth}
-        height={windowHeight}
         style={{ objectFit: "cover" }}
         className="backgroundImageFixer"
-        alt="hello"
+        alt="Background couldn't load"
       ></img>
+      {/* black border */}
       <iframe
-        id="overall"
+        className="pageFrame"
         title="overall"
         style={{ width: "100%", height: "100%" }}
       ></iframe>
@@ -111,7 +115,7 @@ export default function OverallView(nodetarget) {
             xs={{ span: 8 }}
             style={{ textAlign: "center" }}
           >
-            <p className="overallViewTitle">Overall {name}</p>
+            <h3 className="header" style={{paddingRight: "5%"}}>Overall {name}</h3>
           </Col>
           <Col
             lg={{ span: 1 }}
@@ -141,7 +145,6 @@ export default function OverallView(nodetarget) {
             style={{ textAlign: "center" }}
           >
             <div className="">
-              {/* <p className=" overallViewStats ">Measurable Progress</p> */}
               <p className=" overallViewStats">Good {percentOfGoodNodes}%</p>
               <p className=" overallViewStats yellowText ">
                 Risk {percentOfBadNodes}%
@@ -169,7 +172,7 @@ export default function OverallView(nodetarget) {
             xs={{ span: 12 }}
             style={{
               textAlign: "center",
-              height: borderHeight,
+              height: listBoxHeight,
               marginBottom: padder,
             }}
           >
@@ -256,6 +259,7 @@ export default function OverallView(nodetarget) {
         style={{ justifyContent: "center", backgroundColor: "black" }}
         className="footerLogoBox"
       >
+          {/* logo for the fotter that spins */}
         <svg width="50" height="50" className="logoSVG">
           <g>
             <title>background</title>

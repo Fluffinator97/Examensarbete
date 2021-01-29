@@ -8,28 +8,21 @@ export default function TwoDGraph() {
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight - 50;
   // Setting The dist for the links
-  var delay = 2000;
-
-  let mql = window.matchMedia("(max-width: 1000px)");
-  let mobileView = mql.matches;
-
+  var delay = 3000;
+// redirect on a timeout to make a launchscreen with automatic redirect
   setTimeout(function () {
-    if (mobileView === true) {
     window.location = "overall/Metrics";
-  } else {
-     window.location = "overall"; 
-  }
   }, delay);
 
   return (
-    <div className="first" style={{ height: windowHeight }}>
-      {/* Rendering the Graph */}
-      <div className="splashScreenHeader">
-        <p className="splashScreenSize, splashScreenP">This is</p>
-        <h2 className="splashScreenSize, splashScreenH2">
+    <div> 
+      <div className="splashHeader" style={{marginTop: "50px"}}>
+        <p className=" globalP">This is</p>
+        <h2 className=" globalH2">
           Measurable Progress
         </h2>
       </div>
+      {/* Rendering the Graph */}
       <ForceGraph2D
         graphData={GraphData}
         nodeColor={(node) => "lightgrey"}
@@ -46,6 +39,7 @@ export default function TwoDGraph() {
       </div>
       <div style={{ justifyContent: "center", backgroundColor: "black" }}
         className="footerLogoBox">
+          {/* logo for the fotter that spins */}
         <svg width="50" height="50" className="logoSVG">
           <g>
             <title>background</title>
